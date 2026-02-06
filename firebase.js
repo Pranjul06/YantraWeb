@@ -24,7 +24,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD6tZbIeD7PiWcYgsW7BUPH9VEfUUo5CqQ",
+    apiKey: "AIzaSyD6tZbIeD7PIWcYgsW7BUPH9VEfUUo5CqQ",
     authDomain: "web3verse-e9464.firebaseapp.com",
     projectId: "web3verse-e9464",
     storageBucket: "web3verse-e9464.firebasestorage.app",
