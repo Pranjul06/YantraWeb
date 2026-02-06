@@ -1,538 +1,651 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YANTRA | Blockchain & Web3 Event</title>
-    <meta name="description"
-        content="Join the ultimate blockchain and Web3 hackathon. Explore decentralized innovation and compete with the best developers.">
+    <meta
+      name="description"
+      content="Join the ultimate blockchain and Web3 hackathon. Explore decentralized innovation and compete with the best developers."
+    />
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <!-- Animated Background -->
     <div class="bg-animation">
-        <canvas id="blockchain-canvas"></canvas>
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-        <div class="gradient-orb orb-3"></div>
+      <canvas id="blockchain-canvas"></canvas>
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
     </div>
     <div class="grid-overlay"></div>
 
     <!-- Landing Page Content -->
     <div class="content" id="landingPage">
-        <!-- Hero Section -->
-        <section class="hero" id="hero">
-            <!-- Floating Crypto Icons -->
-            <div class="floating-icons">
-                <div class="crypto-icon">₿</div>
-                <div class="crypto-icon">Ξ</div>
-                <div class="crypto-icon">◎</div>
-                <div class="crypto-icon">Ⓜ</div>
-                <div class="crypto-icon">⧫</div>
-                <div class="crypto-icon">◈</div>
-            </div>
+      <!-- Hero Section -->
+      <section class="hero" id="hero">
+        <!-- Floating Crypto Icons -->
+        <div class="floating-icons">
+          <div class="crypto-icon">₿</div>
+          <div class="crypto-icon">Ξ</div>
+          <div class="crypto-icon">◎</div>
+          <div class="crypto-icon">Ⓜ</div>
+          <div class="crypto-icon">⧫</div>
+          <div class="crypto-icon">◈</div>
+        </div>
 
-            <!-- Glitch Title -->
-            <div class="glitch-container">
-                <h1 class="glitch" data-text="YANTRA">YANTRA</h1>
-            </div>
+        <!-- Glitch Title -->
+        <div class="glitch-container">
+          <h1 class="glitch" data-text="YANTRA">YANTRA</h1>
+        </div>
 
-            <p class="subtitle">Blockchain & Web3 Hackathon</p>
+        <p class="subtitle">Blockchain & Web3 Hackathon</p>
 
-            <p class="tagline">
-                Dive into the decentralized future. Build, innovate, and compete
-                in the ultimate Web3 experience. Where blocks become breakthroughs.
+        <p class="tagline">
+          Dive into the decentralized future. Build, innovate, and compete in
+          the ultimate Web3 experience. Where blocks become breakthroughs.
+        </p>
+
+        <!-- Features -->
+        <div class="features">
+          <div class="feature" id="nav-blockchain">
+            <div class="feature-icon">🔗</div>
+            <span>Blockchain</span>
+          </div>
+          <div class="feature" id="nav-crypto">
+            <div class="feature-icon">💰</div>
+            <span>Cryptocurrency</span>
+          </div>
+          <div class="feature" id="nav-nft">
+            <div class="feature-icon">🎨</div>
+            <span>NFT</span>
+          </div>
+          <div class="feature" id="nav-dao">
+            <div class="feature-icon">🏛️</div>
+            <span>DAO</span>
+          </div>
+        </div>
+
+        <!-- Blockchain Visualization -->
+        <div class="blockchain-demo">
+          <div class="block">BLOCK 1</div>
+          <div class="block-connector"></div>
+          <div class="block">BLOCK 2</div>
+          <div class="block-connector"></div>
+          <div class="block">BLOCK 3</div>
+          <div class="block-connector"></div>
+          <div class="block">BLOCK 4</div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="cta-container">
+          <button class="cta-button" id="enterEventBtn">
+            <span class="cta-pulse"></span>
+            Enter The Event
+          </button>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+          <span class="scroll-text">Scroll to explore</span>
+          <div class="scroll-mouse"></div>
+        </div>
+      </section>
+
+      <!-- SECTION 1: BLOCKCHAIN -->
+      <section id="section-blockchain" class="topic-section">
+        <div class="section-container">
+          <div class="section-header reveal">
+            <span class="section-icon">🔗</span>
+            <h2 class="section-title">Blockchain Technology</h2>
+            <p class="section-subtitle">
+              The revolutionary distributed ledger technology that powers
+              decentralized applications. Immutable, transparent, and trustless.
             </p>
+          </div>
 
-            <!-- Features -->
-            <div class="features">
-                <div class="feature" id="nav-blockchain">
-                    <div class="feature-icon">🔗</div>
-                    <span>Blockchain</span>
-                </div>
-                <div class="feature" id="nav-crypto">
-                    <div class="feature-icon">💰</div>
-                    <span>Cryptocurrency</span>
-                </div>
-                <div class="feature" id="nav-nft">
-                    <div class="feature-icon">🎨</div>
-                    <span>NFT</span>
-                </div>
-                <div class="feature" id="nav-dao">
-                    <div class="feature-icon">🏛️</div>
-                    <span>DAO</span>
-                </div>
+          <div class="blockchain-visual reveal-scale">
+            <div class="chain-block">
+              <span>⛓️</span>
+              <span class="block-hash">0x7f3d...</span>
             </div>
-
-            <!-- Blockchain Visualization -->
-            <div class="blockchain-demo">
-                <div class="block">BLOCK 1</div>
-                <div class="block-connector"></div>
-                <div class="block">BLOCK 2</div>
-                <div class="block-connector"></div>
-                <div class="block">BLOCK 3</div>
-                <div class="block-connector"></div>
-                <div class="block">BLOCK 4</div>
+            <div class="chain-connector"></div>
+            <div class="chain-block">
+              <span>📦</span>
+              <span class="block-hash">0xa2b1...</span>
             </div>
-
-            <!-- CTA Button -->
-            <div class="cta-container">
-                <button class="cta-button" id="enterEventBtn">
-                    <span class="cta-pulse"></span>
-                    Enter The Event
-                </button>
+            <div class="chain-connector"></div>
+            <div class="chain-block">
+              <span>🔐</span>
+              <span class="block-hash">0x9c4e...</span>
             </div>
-
-            <!-- Scroll Indicator -->
-            <div class="scroll-indicator">
-                <span class="scroll-text">Scroll to explore</span>
-                <div class="scroll-mouse"></div>
+            <div class="chain-connector"></div>
+            <div class="chain-block">
+              <span>✅</span>
+              <span class="block-hash">0x1d8f...</span>
             </div>
-        </section>
+          </div>
 
-        <!-- SECTION 1: BLOCKCHAIN -->
-        <section id="section-blockchain" class="topic-section">
-            <div class="section-container">
-                <div class="section-header reveal">
-                    <span class="section-icon">🔗</span>
-                    <h2 class="section-title">Blockchain Technology</h2>
-                    <p class="section-subtitle">
-                        The revolutionary distributed ledger technology that powers decentralized applications.
-                        Immutable, transparent, and trustless.
-                    </p>
-                </div>
-
-                <div class="blockchain-visual reveal-scale">
-                    <div class="chain-block">
-                        <span>⛓️</span>
-                        <span class="block-hash">0x7f3d...</span>
-                    </div>
-                    <div class="chain-connector"></div>
-                    <div class="chain-block">
-                        <span>📦</span>
-                        <span class="block-hash">0xa2b1...</span>
-                    </div>
-                    <div class="chain-connector"></div>
-                    <div class="chain-block">
-                        <span>🔐</span>
-                        <span class="block-hash">0x9c4e...</span>
-                    </div>
-                    <div class="chain-connector"></div>
-                    <div class="chain-block">
-                        <span>✅</span>
-                        <span class="block-hash">0x1d8f...</span>
-                    </div>
-                </div>
-
-                <div class="info-grid">
-                    <div class="info-card reveal-left">
-                        <h3>Distributed Ledger</h3>
-                        <p>Data is replicated across thousands of nodes worldwide, ensuring no single point of failure.
-                        </p>
-                    </div>
-                    <div class="info-card reveal">
-                        <h3>Consensus Mechanisms</h3>
-                        <p>From Proof of Work to Proof of Stake, blockchains use cryptographic consensus.</p>
-                    </div>
-                    <div class="info-card reveal-right">
-                        <h3>Smart Contracts</h3>
-                        <p>Self-executing code enabling trustless automation of complex agreements.</p>
-                    </div>
-                    <div class="info-card reveal-left">
-                        <h3>Immutability</h3>
-                        <p>Once written, data cannot be altered, providing a permanent audit trail.</p>
-                    </div>
-                    <div class="info-card reveal">
-                        <h3>Transparency</h3>
-                        <p>All transactions are publicly verifiable, creating unprecedented trust.</p>
-                    </div>
-                    <div class="info-card reveal-right">
-                        <h3>Decentralization</h3>
-                        <p>No central authority controls the network. Power is distributed equally.</p>
-                    </div>
-                </div>
+          <div class="info-grid">
+            <div class="info-card reveal-left">
+              <h3>Distributed Ledger</h3>
+              <p>
+                Data is replicated across thousands of nodes worldwide, ensuring
+                no single point of failure.
+              </p>
             </div>
-        </section>
-
-        <!-- SECTION 2: CRYPTOCURRENCY -->
-        <section id="section-crypto" class="topic-section">
-            <div class="crypto-rain">
-                <span class="coin">₿</span>
-                <span class="coin">Ξ</span>
-                <span class="coin">💰</span>
-                <span class="coin">🪙</span>
-                <span class="coin">₿</span>
-                <span class="coin">Ξ</span>
-                <span class="coin">💎</span>
-                <span class="coin">🪙</span>
-                <span class="coin">₿</span>
-                <span class="coin">Ξ</span>
+            <div class="info-card reveal">
+              <h3>Consensus Mechanisms</h3>
+              <p>
+                From Proof of Work to Proof of Stake, blockchains use
+                cryptographic consensus.
+              </p>
             </div>
-
-            <div class="section-container">
-                <div class="section-header reveal">
-                    <span class="section-icon">💰</span>
-                    <h2 class="section-title">Cryptocurrency</h2>
-                    <p class="section-subtitle">
-                        Digital currencies secured by cryptography. The future of money is decentralized.
-                    </p>
-                </div>
-
-                <div class="ticker-container reveal-scale">
-                    <div class="ticker-tape">
-                        <div class="ticker-item">
-                            <span class="symbol">BTC</span>
-                            <span class="price">$97,432.50</span>
-                            <span class="change up">+2.4%</span>
-                        </div>
-                        <div class="ticker-item">
-                            <span class="symbol">ETH</span>
-                            <span class="price">$3,821.75</span>
-                            <span class="change up">+5.1%</span>
-                        </div>
-                        <div class="ticker-item">
-                            <span class="symbol">SOL</span>
-                            <span class="price">$184.20</span>
-                            <span class="change down">-1.2%</span>
-                        </div>
-                        <div class="ticker-item">
-                            <span class="symbol">ADA</span>
-                            <span class="price">$0.92</span>
-                            <span class="change up">+3.8%</span>
-                        </div>
-                        <div class="ticker-item">
-                            <span class="symbol">DOT</span>
-                            <span class="price">$9.45</span>
-                            <span class="change up">+7.2%</span>
-                        </div>
-                        <div class="ticker-item">
-                            <span class="symbol">BTC</span>
-                            <span class="price">$97,432.50</span>
-                            <span class="change up">+2.4%</span>
-                        </div>
-                        <div class="ticker-item">
-                            <span class="symbol">ETH</span>
-                            <span class="price">$3,821.75</span>
-                            <span class="change up">+5.1%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="crypto-grid">
-                    <div class="crypto-card reveal-left">
-                        <h3>Digital Gold</h3>
-                        <p>Bitcoin pioneered scarce digital assets with a fixed supply of 21 million coins.</p>
-                    </div>
-                    <div class="crypto-card reveal">
-                        <h3>DeFi Revolution</h3>
-                        <p>Decentralized Finance eliminates intermediaries. Earn yield without banks.</p>
-                    </div>
-                    <div class="crypto-card reveal-right">
-                        <h3>Stablecoins</h3>
-                        <p>Cryptocurrencies pegged to real-world assets like USD.</p>
-                    </div>
-                </div>
+            <div class="info-card reveal-right">
+              <h3>Smart Contracts</h3>
+              <p>
+                Self-executing code enabling trustless automation of complex
+                agreements.
+              </p>
             </div>
-        </section>
-
-        <!-- SECTION 3: NFT -->
-        <section id="section-nft" class="topic-section">
-            <div class="section-container">
-                <div class="section-header reveal">
-                    <span class="section-icon">🎨</span>
-                    <h2 class="section-title">Non-Fungible Tokens</h2>
-                    <p class="section-subtitle">
-                        Digital ownership reimagined. Unique, verifiable, and tradeable assets.
-                    </p>
-                </div>
-
-                <div class="nft-gallery">
-                    <div class="nft-card">
-                        <div class="nft-image">🖼️</div>
-                        <div class="nft-info">
-                            <h4>Digital Dreamscape #42</h4>
-                            <div class="price">Floor: <span>2.5 ETH</span></div>
-                        </div>
-                    </div>
-                    <div class="nft-card">
-                        <div class="nft-image">🎭</div>
-                        <div class="nft-info">
-                            <h4>Cyber Punk Avatar</h4>
-                            <div class="price">Floor: <span>1.8 ETH</span></div>
-                        </div>
-                    </div>
-                    <div class="nft-card">
-                        <div class="nft-image">🌌</div>
-                        <div class="nft-info">
-                            <h4>Galaxy Genesis</h4>
-                            <div class="price">Floor: <span>5.2 ETH</span></div>
-                        </div>
-                    </div>
-                    <div class="nft-card">
-                        <div class="nft-image">🤖</div>
-                        <div class="nft-info">
-                            <h4>AI Art Collective #7</h4>
-                            <div class="price">Floor: <span>0.8 ETH</span></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="info-card reveal-left">
+              <h3>Immutability</h3>
+              <p>
+                Once written, data cannot be altered, providing a permanent
+                audit trail.
+              </p>
             </div>
-        </section>
-
-        <!-- SECTION 4: DAO -->
-        <section id="section-dao" class="topic-section">
-            <div class="section-container">
-                <div class="section-header reveal">
-                    <span class="section-icon">🏛️</span>
-                    <h2 class="section-title">Decentralized Autonomous Organizations</h2>
-                    <p class="section-subtitle">
-                        Community-governed entities with rules encoded in smart contracts.
-                    </p>
-                </div>
-
-                <div class="dao-network reveal-scale">
-                    <div class="dao-node">�️</div>
-                    <div class="dao-node">👤</div>
-                    <div class="dao-node">👤</div>
-                    <div class="dao-node">👤</div>
-                    <div class="dao-node">👤</div>
-                    <div class="dao-node">👤</div>
-                    <div class="dao-node">👤</div>
-                </div>
-
-                <div class="dao-voting reveal">
-                    <button class="vote-btn vote-yes"
-                        onclick="this.style.transform='scale(1.2)'; this.textContent='✓ Voted Yes!'">
-                        👍 Vote YES
-                    </button>
-                    <button class="vote-btn vote-no"
-                        onclick="this.style.transform='scale(1.2)'; this.textContent='✗ Voted No!'">
-                        👎 Vote NO
-                    </button>
-                </div>
+            <div class="info-card reveal">
+              <h3>Transparency</h3>
+              <p>
+                All transactions are publicly verifiable, creating unprecedented
+                trust.
+              </p>
             </div>
-        </section>
+            <div class="info-card reveal-right">
+              <h3>Decentralization</h3>
+              <p>
+                No central authority controls the network. Power is distributed
+                equally.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: CRYPTOCURRENCY -->
+      <section id="section-crypto" class="topic-section">
+        <div class="crypto-rain">
+          <span class="coin">₿</span>
+          <span class="coin">Ξ</span>
+          <span class="coin">💰</span>
+          <span class="coin">🪙</span>
+          <span class="coin">₿</span>
+          <span class="coin">Ξ</span>
+          <span class="coin">💎</span>
+          <span class="coin">🪙</span>
+          <span class="coin">₿</span>
+          <span class="coin">Ξ</span>
+        </div>
+
+        <div class="section-container">
+          <div class="section-header reveal">
+            <span class="section-icon">💰</span>
+            <h2 class="section-title">Cryptocurrency</h2>
+            <p class="section-subtitle">
+              Digital currencies secured by cryptography. The future of money is
+              decentralized.
+            </p>
+          </div>
+
+          <div class="ticker-container reveal-scale">
+            <div class="ticker-tape">
+              <div class="ticker-item">
+                <span class="symbol">BTC</span>
+                <span class="price">$97,432.50</span>
+                <span class="change up">+2.4%</span>
+              </div>
+              <div class="ticker-item">
+                <span class="symbol">ETH</span>
+                <span class="price">$3,821.75</span>
+                <span class="change up">+5.1%</span>
+              </div>
+              <div class="ticker-item">
+                <span class="symbol">SOL</span>
+                <span class="price">$184.20</span>
+                <span class="change down">-1.2%</span>
+              </div>
+              <div class="ticker-item">
+                <span class="symbol">ADA</span>
+                <span class="price">$0.92</span>
+                <span class="change up">+3.8%</span>
+              </div>
+              <div class="ticker-item">
+                <span class="symbol">DOT</span>
+                <span class="price">$9.45</span>
+                <span class="change up">+7.2%</span>
+              </div>
+              <div class="ticker-item">
+                <span class="symbol">BTC</span>
+                <span class="price">$97,432.50</span>
+                <span class="change up">+2.4%</span>
+              </div>
+              <div class="ticker-item">
+                <span class="symbol">ETH</span>
+                <span class="price">$3,821.75</span>
+                <span class="change up">+5.1%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="crypto-grid">
+            <div class="crypto-card reveal-left">
+              <h3>Digital Gold</h3>
+              <p>
+                Bitcoin pioneered scarce digital assets with a fixed supply of
+                21 million coins.
+              </p>
+            </div>
+            <div class="crypto-card reveal">
+              <h3>DeFi Revolution</h3>
+              <p>
+                Decentralized Finance eliminates intermediaries. Earn yield
+                without banks.
+              </p>
+            </div>
+            <div class="crypto-card reveal-right">
+              <h3>Stablecoins</h3>
+              <p>Cryptocurrencies pegged to real-world assets like USD.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: NFT -->
+      <section id="section-nft" class="topic-section">
+        <div class="section-container">
+          <div class="section-header reveal">
+            <span class="section-icon">🎨</span>
+            <h2 class="section-title">Non-Fungible Tokens</h2>
+            <p class="section-subtitle">
+              Digital ownership reimagined. Unique, verifiable, and tradeable
+              assets.
+            </p>
+          </div>
+
+          <div class="nft-gallery">
+            <div class="nft-card">
+              <div class="nft-image">🖼️</div>
+              <div class="nft-info">
+                <h4>Digital Dreamscape #42</h4>
+                <div class="price">Floor: <span>2.5 ETH</span></div>
+              </div>
+            </div>
+            <div class="nft-card">
+              <div class="nft-image">🎭</div>
+              <div class="nft-info">
+                <h4>Cyber Punk Avatar</h4>
+                <div class="price">Floor: <span>1.8 ETH</span></div>
+              </div>
+            </div>
+            <div class="nft-card">
+              <div class="nft-image">🌌</div>
+              <div class="nft-info">
+                <h4>Galaxy Genesis</h4>
+                <div class="price">Floor: <span>5.2 ETH</span></div>
+              </div>
+            </div>
+            <div class="nft-card">
+              <div class="nft-image">🤖</div>
+              <div class="nft-info">
+                <h4>AI Art Collective #7</h4>
+                <div class="price">Floor: <span>0.8 ETH</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: DAO -->
+      <section id="section-dao" class="topic-section">
+        <div class="section-container">
+          <div class="section-header reveal">
+            <span class="section-icon">🏛️</span>
+            <h2 class="section-title">
+              Decentralized Autonomous Organizations
+            </h2>
+            <p class="section-subtitle">
+              Community-governed entities with rules encoded in smart contracts.
+            </p>
+          </div>
+
+          <div class="dao-network reveal-scale">
+            <div class="dao-node">�️</div>
+            <div class="dao-node">👤</div>
+            <div class="dao-node">👤</div>
+            <div class="dao-node">👤</div>
+            <div class="dao-node">👤</div>
+            <div class="dao-node">👤</div>
+            <div class="dao-node">👤</div>
+          </div>
+
+          <div class="dao-voting reveal">
+            <button
+              class="vote-btn vote-yes"
+              onclick="
+                this.style.transform = 'scale(1.2)';
+                this.textContent = '✓ Voted Yes!';
+              "
+            >
+              👍 Vote YES
+            </button>
+            <button
+              class="vote-btn vote-no"
+              onclick="
+                this.style.transform = 'scale(1.2)';
+                this.textContent = '✗ Voted No!';
+              "
+            >
+              👎 Vote NO
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
 
     <!-- Registration Modal -->
     <div class="modal-overlay" id="registrationModal">
-        <div class="registration-modal">
-            <button class="modal-close" id="closeModal">&times;</button>
+      <div class="registration-modal">
+        <button class="modal-close" id="closeModal">&times;</button>
 
-            <div class="modal-header">
-                <h2 class="modal-title">Join The Revolution</h2>
-                <p class="modal-subtitle">Register your team for the hackathon</p>
-            </div>
-
-            <form id="registrationForm">
-                <div class="form-group">
-                    <label class="form-label" for="teamName">Team Name</label>
-                    <input type="text" id="teamName" class="form-input" placeholder="Enter your team name" required
-                        maxlength="50">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="memberCount">Number of Members</label>
-                    <select id="memberCount" class="form-input form-select" required>
-                        <option value="">Select team size</option>
-                        <option value="3">3 Members</option>
-                        <option value="4">4 Members</option>
-                        <option value="5">5 Members</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="submit-button" id="submitBtn">
-                    Register Team
-                </button>
-            </form>
+        <div class="modal-header">
+          <h2 class="modal-title">Join The Revolution</h2>
+          <p class="modal-subtitle">Register your team for the hackathon</p>
         </div>
+
+        <form id="registrationForm">
+          <div class="form-group">
+            <label class="form-label" for="teamName">Team Name</label>
+            <input
+              type="text"
+              id="teamName"
+              class="form-input"
+              placeholder="Enter your team name"
+              required
+              maxlength="50"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="memberCount"
+              >Number of Members</label
+            >
+            <select id="memberCount" class="form-input form-select" required>
+              <option value="">Select team size</option>
+              <option value="3">3 Members</option>
+              <option value="4">4 Members</option>
+              <option value="5">5 Members</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-button" id="submitBtn">
+            Register Team
+          </button>
+        </form>
+      </div>
     </div>
 
     <!-- Dashboard (shown after registration) -->
     <div class="dashboard" id="dashboard">
-        <!-- Profile Circle (Top Right) -->
-        <div class="profile-circle" id="profileCircle">
-            <span class="profile-icon">�</span>
+      <!-- Profile Circle (Top Right) -->
+      <div class="profile-circle" id="profileCircle">
+        <span class="profile-icon">�</span>
+      </div>
+
+      <!-- Profile Popup -->
+      <div class="profile-popup" id="profilePopup">
+        <div class="profile-popup-header">
+          <h3>Team Details</h3>
+          <button class="profile-close" id="closeProfile">&times;</button>
+        </div>
+        <div class="profile-popup-content">
+          <div class="profile-avatar">�</div>
+          <h4 id="profileTeamName">Team Name</h4>
+          <p id="profileMemberCount">Members: 0</p>
+          <div class="profile-badge">Registered ✓</div>
+        </div>
+      </div>
+
+      <!-- Left Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <h2 class="sidebar-title">YANTRA</h2>
+          <p class="sidebar-subtitle">Event Dashboard</p>
+        </div>
+        <nav class="sidebar-nav">
+          <button class="nav-item active" data-round="intro">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Introduction</span>
+          </button>
+          <button class="nav-item" data-round="round1">
+            <span class="nav-icon">❓</span>
+            <span class="nav-text">Round 1 - Quiz</span>
+          </button>
+          <button class="nav-item" data-round="round2">
+            <span class="nav-icon">💻</span>
+            <span class="nav-text">Round 2 - Coding</span>
+          </button>
+          <button class="nav-item" data-round="round3">
+            <span class="nav-icon">📤</span>
+            <span class="nav-text">Round 3 - Upload</span>
+          </button>
+          <button class="nav-item" data-round="round4">
+            <span class="nav-icon">�</span>
+            <span class="nav-text">Round 4 - Scenario</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="dashboard-content">
+        <!-- Introduction Section -->
+        <div class="round-section active" id="intro">
+          <div class="round-header">
+            <h1 class="round-title">Welcome to YANTRA</h1>
+            <p class="round-subtitle">Blockchain & Web3 Hackathon</p>
+          </div>
+          <div class="intro-content">
+            <div class="intro-hero">
+              <div class="intro-icon">🚀</div>
+              <h2>Your Journey Begins</h2>
+              <p>
+                Navigate through 4 exciting rounds to prove your blockchain
+                expertise.
+              </p>
+            </div>
+            <div class="rounds-overview">
+              <div class="overview-card">
+                <span class="overview-icon">❓</span>
+                <h3>Round 1</h3>
+                <p>Quiz Challenge</p>
+              </div>
+              <div class="overview-card">
+                <span class="overview-icon">💻</span>
+                <h3>Round 2</h3>
+                <p>Coding Challenge</p>
+              </div>
+              <div class="overview-card">
+                <span class="overview-icon">📤</span>
+                <h3>Round 3</h3>
+                <p>Project Submission</p>
+              </div>
+              <div class="overview-card">
+                <span class="overview-icon">🎯</span>
+                <h3>Round 4</h3>
+                <p>Scenario Challenge</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Profile Popup -->
-        <div class="profile-popup" id="profilePopup">
-            <div class="profile-popup-header">
-                <h3>Team Details</h3>
-                <button class="profile-close" id="closeProfile">&times;</button>
+        <!-- Round 1: Quiz -->
+        <div class="round-section" id="round1">
+          <div class="round-header">
+            <h1 class="round-title">Round 1: Quiz Challenge</h1>
+            <p class="round-subtitle">Test your blockchain knowledge</p>
+          </div>
+          <div class="round-content-center">
+            <div class="round-card">
+              <div class="round-card-icon">❓</div>
+              <h2>Quizizz Challenge</h2>
+              <p>
+                Answer blockchain and Web3 questions to score points. Good luck!
+              </p>
+              <a
+                href="https://wayground.com/?lng=en"
+                target="_blank"
+                class="round-btn"
+              >
+                Start Quiz
+                <span class="btn-arrow">→</span>
+              </a>
             </div>
-            <div class="profile-popup-content">
-                <div class="profile-avatar">�</div>
-                <h4 id="profileTeamName">Team Name</h4>
-                <p id="profileMemberCount">Members: 0</p>
-                <div class="profile-badge">Registered ✓</div>
-            </div>
+          </div>
         </div>
 
-        <!-- Left Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <h2 class="sidebar-title">YANTRA</h2>
-                <p class="sidebar-subtitle">Event Dashboard</p>
+        <!-- Round 2: HackerRank -->
+        <div class="round-section" id="round2">
+          <div class="round-header">
+            <h1 class="round-title">Round 2: Coding Challenge</h1>
+            <p class="round-subtitle">Show your coding skills</p>
+          </div>
+          <div class="round-content-center">
+            <div class="round-card">
+              <div class="round-card-icon">💻</div>
+              <h2>HackerRank Challenge</h2>
+              <p>
+                Solve coding problems related to blockchain algorithms and data
+                structures.
+              </p>
+              <a
+                href="https://www.hackerrank.com"
+                target="_blank"
+                class="round-btn hackerrank-btn"
+              >
+                Go to HackerRank
+                <span class="btn-arrow">→</span>
+              </a>
             </div>
-            <nav class="sidebar-nav">
-                <button class="nav-item active" data-round="intro">
-                    <span class="nav-icon">🏠</span>
-                    <span class="nav-text">Introduction</span>
-                </button>
-                <button class="nav-item" data-round="round1">
-                    <span class="nav-icon">❓</span>
-                    <span class="nav-text">Round 1 - Quiz</span>
-                </button>
-                <button class="nav-item" data-round="round2">
-                    <span class="nav-icon">💻</span>
-                    <span class="nav-text">Round 2 - Coding</span>
-                </button>
-                <button class="nav-item" data-round="round3">
-                    <span class="nav-icon">📤</span>
-                    <span class="nav-text">Round 3 - Upload</span>
-                </button>
-                <button class="nav-item" data-round="round4">
-                    <span class="nav-icon">�</span>
-                    <span class="nav-text">Round 4 - Scenario</span>
-                </button>
-            </nav>
+          </div>
         </div>
 
-        <!-- Main Content Area -->
-        <div class="dashboard-content">
-            <!-- Introduction Section -->
-            <div class="round-section active" id="intro">
-                <div class="round-header">
-                    <h1 class="round-title">Welcome to YANTRA</h1>
-                    <p class="round-subtitle">Blockchain & Web3 Hackathon</p>
-                </div>
-                <div class="intro-content">
-                    <div class="intro-hero">
-                        <div class="intro-icon">🚀</div>
-                        <h2>Your Journey Begins</h2>
-                        <p>Navigate through 4 exciting rounds to prove your blockchain expertise.</p>
-                    </div>
-                    <div class="rounds-overview">
-                        <div class="overview-card">
-                            <span class="overview-icon">❓</span>
-                            <h3>Round 1</h3>
-                            <p>Quiz Challenge</p>
-                        </div>
-                        <div class="overview-card">
-                            <span class="overview-icon">💻</span>
-                            <h3>Round 2</h3>
-                            <p>Coding Challenge</p>
-                        </div>
-                        <div class="overview-card">
-                            <span class="overview-icon">📤</span>
-                            <h3>Round 3</h3>
-                            <p>Project Submission</p>
-                        </div>
-                        <div class="overview-card">
-                            <span class="overview-icon">🎯</span>
-                            <h3>Round 4</h3>
-                            <p>Scenario Challenge</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- Round 3: File Upload -->
+        <div class="round-section" id="round3">
+          <div class="round-header">
+            <h1 class="round-title">Round 3: Project Submission</h1>
+            <p class="round-subtitle">Upload your project files</p>
+          </div>
+          <div class="round-content-center">
+            <div class="round-card upload-card">
+              <div class="round-card-icon">📤</div>
+              <h2>Upload Your Project</h2>
+              <p>Submit your project files (ZIP, PDF, or document format)</p>
+              <div class="upload-area" id="uploadArea">
+                <input type="file" id="fileInput" hidden />
+                <div class="upload-icon">📁</div>
+                <p class="upload-text">
+                  Drag & drop your file here or click to browse
+                </p>
+                <p class="upload-hint">Max file size: 50MB</p>
+              </div>
+              <div
+                class="uploaded-file"
+                id="uploadedFile"
+                style="display: none"
+              >
+                <span class="file-icon">📄</span>
+                <span class="file-name" id="fileName"></span>
+                <button class="remove-file" id="removeFile">✕</button>
+              </div>
+              <button
+                class="round-btn submit-upload"
+                id="submitUpload"
+                disabled
+              >
+                Submit File
+              </button>
             </div>
-
-            <!-- Round 1: Quiz -->
-            <div class="round-section" id="round1">
-                <div class="round-header">
-                    <h1 class="round-title">Round 1: Quiz Challenge</h1>
-                    <p class="round-subtitle">Test your blockchain knowledge</p>
-                </div>
-                <div class="round-content-center">
-                    <div class="round-card">
-                        <div class="round-card-icon">❓</div>
-                        <h2>Quizizz Challenge</h2>
-                        <p>Answer blockchain and Web3 questions to score points. Good luck!</p>
-                        <a href="https://wayground.com/?lng=en" target="_blank" class="round-btn">
-                            Start Quiz
-                            <span class="btn-arrow">→</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Round 2: HackerRank -->
-            <div class="round-section" id="round2">
-                <div class="round-header">
-                    <h1 class="round-title">Round 2: Coding Challenge</h1>
-                    <p class="round-subtitle">Show your coding skills</p>
-                </div>
-                <div class="round-content-center">
-                    <div class="round-card">
-                        <div class="round-card-icon">💻</div>
-                        <h2>HackerRank Challenge</h2>
-                        <p>Solve coding problems related to blockchain algorithms and data structures.</p>
-                        <a href="https://www.hackerrank.com" target="_blank" class="round-btn hackerrank-btn">
-                            Go to HackerRank
-                            <span class="btn-arrow">→</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Round 3: File Upload -->
-            <div class="round-section" id="round3">
-                <div class="round-header">
-                    <h1 class="round-title">Round 3: Project Submission</h1>
-                    <p class="round-subtitle">Upload your project files</p>
-                </div>
-                <div class="round-content-center">
-                    <div class="round-card upload-card">
-                        <div class="round-card-icon">📤</div>
-                        <h2>Upload Your Project</h2>
-                        <p>Submit your project files (ZIP, PDF, or document format)</p>
-                        <div class="upload-area" id="uploadArea">
-                            <input type="file" id="fileInput" hidden>
-                            <div class="upload-icon">📁</div>
-                            <p class="upload-text">Drag & drop your file here or click to browse</p>
-                            <p class="upload-hint">Max file size: 50MB</p>
-                        </div>
-                        <div class="uploaded-file" id="uploadedFile" style="display: none;">
-                            <span class="file-icon">📄</span>
-                            <span class="file-name" id="fileName"></span>
-                            <button class="remove-file" id="removeFile">✕</button>
-                        </div>
-                        <button class="round-btn submit-upload" id="submitUpload" disabled>
-                            Submit File
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Round 4: Scenario -->
-            <div class="round-section" id="round4">
-                <div class="round-header">
-                    <h1 class="round-title">Round 4: Scenario Challenge</h1>
-                    <p class="round-subtitle">Apply your knowledge to real-world scenarios</p>
-                </div>
-                <div class="round-content-center">
-                    <div class="round-card">
-                        <div class="round-card-icon">🎯</div>
-                        <h2>Coming Soon</h2>
-                        <p>The scenario-based challenge will be revealed during the event. Stay tuned!</p>
-                        <div class="coming-soon-badge">🔒 Locked</div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <!-- Round 4: Scenario -->
+        <div class="round-section" id="round4">
+          <div class="round-header">
+            <h1 class="round-title">Round 4: Scenario Challenge</h1>
+            <p class="round-subtitle">
+              Apply your knowledge to real-world scenarios
+            </p>
+          </div>
+          <div class="round-content-center">
+            <div class="round-card">
+              <div class="round-card-icon">🎯</div>
+              <h2>Coming Soon</h2>
+              <p>
+                The scenario-based challenge will be revealed during the event.
+                Stay tuned!
+              </p>
+              <div class="coming-soon-badge">🔒 Locked</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
+    <script type="module">
+      // 1. Import the specific Firebase products you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        getDocs,
+      } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
+      // 2. Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyD6tZbIeD7PiWcYgsW7BUPH9VEfUUo5CqQ",
+        authDomain: "web3verse-e9464.firebaseapp.com",
+        projectId: "web3verse-e9464",
+        storageBucket: "web3verse-e9464.firebasestorage.app",
+        messagingSenderId: "459771875792",
+        appId: "1:459771875792:web:25a7b02fdf00efe211e9d5",
+        measurementId: "G-909M8F4ZMX",
+      };
+
+      // 3. Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+
+      // 4. Initialize Cloud Firestore and get a reference to the service
+      const db = getFirestore(app);
+
+      // 5. Console log to verify connection (Check your browser console!)
+      console.log("Firebase App Initialized:", app);
+      console.log("Firestore Database Ready:", db);
+
+      // --- OPTIONAL: Make 'db' available globally for testing in console ---
+      // window.db = db;
+    </script>
+  </body>
 </html>
