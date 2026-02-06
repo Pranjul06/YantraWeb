@@ -2972,3 +2972,1161 @@
                 font-size: 1.1rem;
             }
         }
+
+        /* =========================================
+           SIDEBAR DIVIDER
+           ========================================= */
+        .sidebar-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
+            margin: 15px 10px;
+        }
+
+        /* =========================================
+           LEADERBOARD SECTION
+           ========================================= */
+        .leaderboard-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .leaderboard-header {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .refresh-btn {
+            padding: 10px 20px;
+            background: rgba(0, 245, 255, 0.1);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 8px;
+            color: var(--accent-cyan);
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(0, 245, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .refresh-btn.spinning {
+            animation: spin 0.5s linear;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .leaderboard-table {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .leaderboard-table-header {
+            display: grid;
+            grid-template-columns: 80px 1fr 120px 100px;
+            padding: 20px 25px;
+            background: rgba(0, 245, 255, 0.05);
+            border-bottom: 1px solid var(--border-glow);
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-cyan);
+        }
+
+        .leaderboard-body {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .leaderboard-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 120px 100px;
+            padding: 18px 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            align-items: center;
+        }
+
+        .leaderboard-row:last-child {
+            border-bottom: none;
+        }
+
+        .leaderboard-row:hover {
+            background: rgba(0, 245, 255, 0.05);
+        }
+
+        .leaderboard-row.rank-1 {
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), transparent);
+            border-left: 3px solid #ffd700;
+        }
+
+        .leaderboard-row.rank-2 {
+            background: linear-gradient(90deg, rgba(192, 192, 192, 0.1), transparent);
+            border-left: 3px solid #c0c0c0;
+        }
+
+        .leaderboard-row.rank-3 {
+            background: linear-gradient(90deg, rgba(205, 127, 50, 0.1), transparent);
+            border-left: 3px solid #cd7f32;
+        }
+
+        .lb-col {
+            display: flex;
+            align-items: center;
+        }
+
+        .lb-rank {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .lb-team .team-name {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .lb-members {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .lb-score {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .leaderboard-loading,
+        .leaderboard-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 245, 255, 0.2);
+            border-top-color: var(--accent-cyan);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .leaderboard-footer {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .leaderboard-note {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        /* Leaderboard Responsive */
+        @media (max-width: 768px) {
+
+            .leaderboard-table-header,
+            .leaderboard-row {
+                grid-template-columns: 60px 1fr 80px 70px;
+                padding: 15px;
+            }
+
+            .lb-rank {
+                font-size: 1rem;
+            }
+
+            .lb-score {
+                font-size: 0.95rem;
+            }
+
+            .lb-members {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .leaderboard-table-header,
+            .leaderboard-row {
+                grid-template-columns: 50px 1fr 60px;
+                gap: 5px;
+            }
+
+            .lb-members {
+                display: none;
+            }
+
+            .leaderboard-table-header .lb-members {
+                display: none;
+            }
+        }
+
+        /* =========================================
+           DASHBOARD ANIMATED BACKGROUND
+           ========================================= */
+        .dashboard-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        #dashboard-canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .dashboard-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: dashboardFloat 15s ease-in-out infinite;
+        }
+
+        .dashboard-orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-cyan), transparent);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .dashboard-orb-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent-purple), transparent);
+            bottom: -50px;
+            left: 20%;
+            animation-delay: -5s;
+        }
+
+        .dashboard-orb-3 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, var(--accent-pink), transparent);
+            top: 40%;
+            right: 30%;
+            animation-delay: -10s;
+        }
+
+        @keyframes dashboardFloat {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            25% {
+                transform: translate(30px, -40px) scale(1.1);
+            }
+
+            50% {
+                transform: translate(-20px, 20px) scale(0.95);
+            }
+
+            75% {
+                transform: translate(25px, 35px) scale(1.05);
+            }
+        }
+
+        /* =========================================
+           FLOATING PARTICLES
+           ========================================= */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 280px;
+            width: calc(100% - 280px);
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.15;
+            animation: particleFloat 20s linear infinite;
+        }
+
+        .particle:nth-child(1) {
+            left: 5%;
+            animation-delay: 0s;
+            top: -50px;
+        }
+
+        .particle:nth-child(2) {
+            left: 15%;
+            animation-delay: -2s;
+            top: -50px;
+        }
+
+        .particle:nth-child(3) {
+            left: 25%;
+            animation-delay: -4s;
+            top: -50px;
+        }
+
+        .particle:nth-child(4) {
+            left: 35%;
+            animation-delay: -6s;
+            top: -50px;
+        }
+
+        .particle:nth-child(5) {
+            left: 45%;
+            animation-delay: -8s;
+            top: -50px;
+        }
+
+        .particle:nth-child(6) {
+            left: 55%;
+            animation-delay: -10s;
+            top: -50px;
+        }
+
+        .particle:nth-child(7) {
+            left: 65%;
+            animation-delay: -12s;
+            top: -50px;
+        }
+
+        .particle:nth-child(8) {
+            left: 75%;
+            animation-delay: -14s;
+            top: -50px;
+        }
+
+        .particle:nth-child(9) {
+            left: 85%;
+            animation-delay: -16s;
+            top: -50px;
+        }
+
+        .particle:nth-child(10) {
+            left: 95%;
+            animation-delay: -18s;
+            top: -50px;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.2;
+            }
+
+            90% {
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* =========================================
+           ANIMATED HEADER
+           ========================================= */
+        .animated-header {
+            position: relative;
+        }
+
+        .header-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(0, 245, 255, 0.1) 0%, transparent 70%);
+            animation: headerPulse 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes headerPulse {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        .glowing-text {
+            text-shadow:
+                0 0 10px var(--accent-cyan),
+                0 0 20px var(--accent-cyan),
+                0 0 40px var(--accent-cyan),
+                0 0 60px var(--accent-purple);
+            animation: textGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+
+            0%,
+            100% {
+                filter: brightness(1);
+                text-shadow: 0 0 10px var(--accent-cyan), 0 0 20px var(--accent-cyan);
+            }
+
+            50% {
+                filter: brightness(1.2);
+                text-shadow: 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-cyan), 0 0 60px var(--accent-purple);
+            }
+        }
+
+        .neon-text {
+            animation: neonFlicker 3s ease-in-out infinite;
+        }
+
+        @keyframes neonFlicker {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px var(--accent-cyan), 0 0 20px var(--accent-cyan);
+            }
+
+            50% {
+                text-shadow: 0 0 5px var(--accent-cyan), 0 0 15px var(--accent-cyan);
+            }
+
+            52% {
+                text-shadow: 0 0 15px var(--accent-cyan), 0 0 30px var(--accent-cyan);
+            }
+
+            54% {
+                text-shadow: 0 0 10px var(--accent-cyan), 0 0 20px var(--accent-cyan);
+            }
+        }
+
+        /* =========================================
+           GRADIENT SHIFT TEXT
+           ========================================= */
+        .gradient-shift {
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink), var(--accent-cyan));
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* =========================================
+           CYBER CARD STYLES
+           ========================================= */
+        .cyber-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-border {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink), var(--accent-cyan));
+            background-size: 400% 400%;
+            border-radius: inherit;
+            z-index: -1;
+            animation: borderRotate 6s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .energy-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            animation: energyLine 3s ease-in-out infinite;
+        }
+
+        @keyframes energyLine {
+
+            0%,
+            100% {
+                transform: scaleX(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+        }
+
+        /* =========================================
+           PULSE AND BOUNCE ICONS
+           ========================================= */
+        .pulse-icon {
+            animation: pulseIcon 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseIcon {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        .bounce-icon {
+            animation: bounceIcon 2s ease-in-out infinite;
+        }
+
+        @keyframes bounceIcon {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating-icon {
+            animation: floatingIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes floatingIcon {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-8px) rotate(5deg);
+            }
+
+            75% {
+                transform: translateY(-5px) rotate(-5deg);
+            }
+        }
+
+        /* =========================================
+           OVERVIEW CARD ENHANCEMENTS
+           ========================================= */
+        .overview-card.hover-lift {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: cardEntry 0.6s ease-out backwards;
+        }
+
+        .overview-card.hover-lift[data-delay="0"] {
+            animation-delay: 0.1s;
+        }
+
+        .overview-card.hover-lift[data-delay="1"] {
+            animation-delay: 0.2s;
+        }
+
+        .overview-card.hover-lift[data-delay="2"] {
+            animation-delay: 0.3s;
+        }
+
+        .overview-card.hover-lift[data-delay="3"] {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes cardEntry {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .overview-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow:
+                0 20px 40px rgba(0, 245, 255, 0.3),
+                0 0 30px rgba(191, 0, 255, 0.2);
+        }
+
+        .card-shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.6s;
+        }
+
+        .overview-card:hover .card-shine {
+            left: 100%;
+        }
+
+        .card-glow {
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: inherit;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s;
+        }
+
+        .overview-card:hover .card-glow {
+            opacity: 1;
+            animation: glowPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* =========================================
+           BLOCKCHAIN CHAIN ANIMATION
+           ========================================= */
+        .blockchain-chain-anim {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+
+        .chain-node {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-card);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 8px;
+            animation: nodeGlow 2s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.5);
+        }
+
+        .chain-node:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .chain-node:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .chain-node:nth-child(5) {
+            animation-delay: 1s;
+        }
+
+        .chain-node:nth-child(7) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes nodeGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+                border-color: var(--accent-cyan);
+            }
+
+            50% {
+                box-shadow: 0 0 25px rgba(0, 245, 255, 0.8), 0 0 50px rgba(0, 245, 255, 0.4);
+                border-color: var(--accent-purple);
+            }
+        }
+
+        .chain-link {
+            width: 40px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chain-link::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            animation: dataFlow 2s linear infinite;
+        }
+
+        @keyframes dataFlow {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* =========================================
+           MEGA CARD STYLES
+           ========================================= */
+        .mega-card {
+            position: relative;
+            overflow: hidden;
+            background: rgba(15, 15, 25, 0.9) !important;
+        }
+
+        .card-border-anim {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink), var(--accent-cyan));
+            background-size: 300% 100%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderFlow 4s linear infinite;
+        }
+
+        @keyframes borderFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 300% 50%;
+            }
+        }
+
+        .card-bg-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            background-image:
+                radial-gradient(circle at 25% 25%, var(--accent-cyan) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, var(--accent-purple) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+
+            100% {
+                transform: translateX(50px) translateY(50px);
+            }
+        }
+
+        .code-pattern {
+            background-image: none;
+            background: repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(0, 245, 255, 0.03) 20px,
+                    rgba(0, 245, 255, 0.03) 21px);
+        }
+
+        .mega-icon {
+            font-size: 5rem !important;
+            margin-bottom: 20px;
+        }
+
+        /* =========================================
+           CYBER BUTTON
+           ========================================= */
+        .cyber-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s;
+        }
+
+        .cyber-btn:hover .btn-glow {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cyber-btn:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 10px 30px rgba(0, 245, 255, 0.4),
+                0 0 50px rgba(191, 0, 255, 0.2);
+        }
+
+        /* =========================================
+           FLOATING DECORATIONS
+           ========================================= */
+        .floating-decorations {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-decorations .deco {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: floatDeco 8s ease-in-out infinite;
+        }
+
+        .floating-decorations .deco:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-decorations .deco:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-delay: -2s;
+        }
+
+        .floating-decorations .deco:nth-child(3) {
+            bottom: 15%;
+            left: 20%;
+            animation-delay: -4s;
+        }
+
+        @keyframes floatDeco {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(15deg);
+            }
+        }
+
+        /* =========================================
+           CODE RAIN EFFECT
+           ========================================= */
+        .code-rain {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .code-rain span {
+            position: absolute;
+            top: -50px;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: var(--accent-cyan);
+            opacity: 0.15;
+            animation: codeRain 5s linear infinite;
+        }
+
+        .code-rain span:nth-child(1) {
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .code-rain span:nth-child(2) {
+            left: 15%;
+            animation-delay: -0.5s;
+        }
+
+        .code-rain span:nth-child(3) {
+            left: 25%;
+            animation-delay: -1s;
+        }
+
+        .code-rain span:nth-child(4) {
+            left: 35%;
+            animation-delay: -1.5s;
+        }
+
+        .code-rain span:nth-child(5) {
+            right: 35%;
+            animation-delay: -2s;
+        }
+
+        .code-rain span:nth-child(6) {
+            right: 25%;
+            animation-delay: -2.5s;
+        }
+
+        .code-rain span:nth-child(7) {
+            right: 15%;
+            animation-delay: -3s;
+        }
+
+        .code-rain span:nth-child(8) {
+            right: 5%;
+            animation-delay: -3.5s;
+        }
+
+        @keyframes codeRain {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.2;
+            }
+
+            90% {
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: translateY(500px);
+                opacity: 0;
+            }
+        }
+
+        /* =========================================
+           CYBER UPLOAD AREA
+           ========================================= */
+        .cyber-upload {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-border-anim {
+            position: absolute;
+            inset: 0;
+            border: 2px dashed transparent;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: uploadDash 2s linear infinite;
+        }
+
+        @keyframes uploadDash {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* =========================================
+           GLOW BADGE
+           ========================================= */
+        .glow-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: badgeGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes badgeGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 10px rgba(255, 0, 128, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 20px rgba(255, 0, 128, 0.6), 0 0 40px rgba(255, 0, 128, 0.3);
+            }
+        }
+
+        .lock-icon {
+            animation: lockWiggle 3s ease-in-out infinite;
+        }
+
+        @keyframes lockWiggle {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(-5deg);
+            }
+
+            75% {
+                transform: rotate(5deg);
+            }
+        }
+
+        /* =========================================
+           MYSTERY PARTICLES
+           ========================================= */
+        .mystery-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .mystery-particles span {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: mysteryFloat 4s ease-in-out infinite;
+        }
+
+        .mystery-particles span:nth-child(1) {
+            top: 20%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .mystery-particles span:nth-child(2) {
+            top: 50%;
+            right: 20%;
+            animation-delay: -1.3s;
+        }
+
+        .mystery-particles span:nth-child(3) {
+            bottom: 20%;
+            left: 50%;
+            animation-delay: -2.6s;
+        }
+
+        @keyframes mysteryFloat {
+
+            0%,
+            100% {
+                transform: scale(0.8) rotate(0deg);
+                opacity: 0.1;
+            }
+
+            50% {
+                transform: scale(1.2) rotate(180deg);
+                opacity: 0.3;
+            }
+        }
+
+        /* =========================================
+           THEME COLORS
+           ========================================= */
+        .quiz-theme .card-border-anim {
+            background: linear-gradient(90deg, #00f5ff, #7c3aed, #00f5ff);
+        }
+
+        .code-theme .card-border-anim {
+            background: linear-gradient(90deg, #10b981, #00f5ff, #10b981);
+        }
+
+        .upload-theme .card-border-anim {
+            background: linear-gradient(90deg, #f59e0b, #ff0080, #f59e0b);
+        }
+
+        .scenario-theme .card-border-anim {
+            background: linear-gradient(90deg, #ff0080, #bf00ff, #ff0080);
+        }
+
+        .locked-card {
+            filter: grayscale(30%);
+        }
+
+        .locked-card:hover {
+            filter: grayscale(0%);
+        }

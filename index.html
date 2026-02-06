@@ -565,123 +565,197 @@
                     <span class="nav-text">Round 3 - Upload</span>
                 </button>
                 <button class="nav-item" data-round="round4">
-                    <span class="nav-icon">�</span>
+                    <span class="nav-icon">🎯</span>
                     <span class="nav-text">Round 4 - Scenario</span>
+                </button>
+                <div class="sidebar-divider"></div>
+                <button class="nav-item" data-round="leaderboard">
+                    <span class="nav-icon">🏆</span>
+                    <span class="nav-text">Leaderboard</span>
                 </button>
             </nav>
         </div>
 
         <!-- Main Content Area -->
         <div class="dashboard-content">
+            <!-- Dashboard Animated Background -->
+            <div class="dashboard-bg">
+                <canvas id="dashboard-canvas"></canvas>
+                <div class="dashboard-orb dashboard-orb-1"></div>
+                <div class="dashboard-orb dashboard-orb-2"></div>
+                <div class="dashboard-orb dashboard-orb-3"></div>
+            </div>
+
+            <!-- Floating Particles Container -->
+            <div class="floating-particles" id="floatingParticles">
+                <span class="particle">⛓️</span>
+                <span class="particle">₿</span>
+                <span class="particle">Ξ</span>
+                <span class="particle">🔗</span>
+                <span class="particle">💎</span>
+                <span class="particle">🪙</span>
+                <span class="particle">⚡</span>
+                <span class="particle">🔐</span>
+                <span class="particle">📦</span>
+                <span class="particle">✨</span>
+            </div>
+
             <!-- Introduction Section -->
             <div class="round-section active" id="intro">
-                <div class="round-header">
-                    <h1 class="round-title">Welcome to YANTRA</h1>
-                    <p class="round-subtitle">Blockchain & Web3 Hackathon</p>
+                <div class="round-header animated-header">
+                    <div class="header-glow"></div>
+                    <h1 class="round-title glowing-text" data-text="Welcome to YANTRA">Welcome to YANTRA</h1>
+                    <p class="round-subtitle typewriter">Blockchain & Web3 Hackathon</p>
                 </div>
                 <div class="intro-content">
-                    <div class="intro-hero">
-                        <div class="intro-icon">🚀</div>
-                        <h2>Your Journey Begins</h2>
+                    <div class="intro-hero cyber-card">
+                        <div class="cyber-border"></div>
+                        <div class="intro-icon pulse-icon">🚀</div>
+                        <h2 class="gradient-shift">Your Journey Begins</h2>
                         <p>
                             Navigate through 4 exciting rounds to prove your blockchain
                             expertise.
                         </p>
+                        <div class="energy-line"></div>
                     </div>
                     <div class="rounds-overview">
-                        <div class="overview-card">
-                            <span class="overview-icon">❓</span>
+                        <div class="overview-card hover-lift" data-delay="0">
+                            <div class="card-shine"></div>
+                            <div class="card-glow"></div>
+                            <span class="overview-icon bounce-icon">❓</span>
                             <h3>Round 1</h3>
                             <p>Quiz Challenge</p>
+                            <div class="card-particles"></div>
                         </div>
-                        <div class="overview-card">
-                            <span class="overview-icon">💻</span>
+                        <div class="overview-card hover-lift" data-delay="1">
+                            <div class="card-shine"></div>
+                            <div class="card-glow"></div>
+                            <span class="overview-icon bounce-icon">💻</span>
                             <h3>Round 2</h3>
                             <p>Coding Challenge</p>
+                            <div class="card-particles"></div>
                         </div>
-                        <div class="overview-card">
-                            <span class="overview-icon">📤</span>
+                        <div class="overview-card hover-lift" data-delay="2">
+                            <div class="card-shine"></div>
+                            <div class="card-glow"></div>
+                            <span class="overview-icon bounce-icon">📤</span>
                             <h3>Round 3</h3>
                             <p>Project Submission</p>
+                            <div class="card-particles"></div>
                         </div>
-                        <div class="overview-card">
-                            <span class="overview-icon">🎯</span>
+                        <div class="overview-card hover-lift" data-delay="3">
+                            <div class="card-shine"></div>
+                            <div class="card-glow"></div>
+                            <span class="overview-icon bounce-icon">🎯</span>
                             <h3>Round 4</h3>
                             <p>Scenario Challenge</p>
+                            <div class="card-particles"></div>
                         </div>
+                    </div>
+                    <!-- Blockchain Chain Animation -->
+                    <div class="blockchain-chain-anim">
+                        <div class="chain-node"></div>
+                        <div class="chain-link"></div>
+                        <div class="chain-node"></div>
+                        <div class="chain-link"></div>
+                        <div class="chain-node"></div>
+                        <div class="chain-link"></div>
+                        <div class="chain-node"></div>
                     </div>
                 </div>
             </div>
 
             <!-- Round 1: Quiz -->
             <div class="round-section" id="round1">
-                <div class="round-header">
-                    <h1 class="round-title">Round 1: Quiz Challenge</h1>
+                <div class="round-header animated-header">
+                    <div class="header-particles"></div>
+                    <h1 class="round-title neon-text">Round 1: Quiz Challenge</h1>
                     <p class="round-subtitle">Test your blockchain knowledge</p>
                 </div>
                 <div class="round-content-center">
-                    <div class="round-card">
-                        <div class="round-card-icon">❓</div>
-                        <h2>Quizizz Challenge</h2>
+                    <div class="round-card mega-card quiz-theme">
+                        <div class="card-border-anim"></div>
+                        <div class="card-bg-pattern"></div>
+                        <div class="round-card-icon mega-icon floating-icon">❓</div>
+                        <h2 class="gradient-shift">Quizizz Challenge</h2>
                         <p>
                             Answer blockchain and Web3 questions to score points. Good luck!
                         </p>
-                        <a href="https://wayground.com/?lng=en" target="_blank" class="round-btn">
-                            Start Quiz
+                        <a href="https://wayground.com/?lng=en" target="_blank" class="round-btn cyber-btn">
+                            <span class="btn-content">Start Quiz</span>
                             <span class="btn-arrow">→</span>
+                            <div class="btn-glow"></div>
                         </a>
+                        <div class="floating-decorations">
+                            <span class="deco">?</span>
+                            <span class="deco">!</span>
+                            <span class="deco">🧠</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Round 2: HackerRank -->
             <div class="round-section" id="round2">
-                <div class="round-header">
-                    <h1 class="round-title">Round 2: Coding Challenge</h1>
+                <div class="round-header animated-header">
+                    <div class="header-particles"></div>
+                    <h1 class="round-title neon-text">Round 2: Coding Challenge</h1>
                     <p class="round-subtitle">Show your coding skills</p>
                 </div>
                 <div class="round-content-center">
-                    <div class="round-card">
-                        <div class="round-card-icon">💻</div>
-                        <h2>HackerRank Challenge</h2>
+                    <div class="round-card mega-card code-theme">
+                        <div class="card-border-anim"></div>
+                        <div class="card-bg-pattern code-pattern"></div>
+                        <div class="round-card-icon mega-icon floating-icon">💻</div>
+                        <h2 class="gradient-shift">HackerRank Challenge</h2>
                         <p>
                             Solve coding problems related to blockchain algorithms and data
                             structures.
                         </p>
-                        <a href="https://www.hackerrank.com" target="_blank" class="round-btn hackerrank-btn">
-                            Go to HackerRank
+                        <a href="https://www.hackerrank.com" target="_blank" class="round-btn cyber-btn hackerrank-btn">
+                            <span class="btn-content">Go to HackerRank</span>
                             <span class="btn-arrow">→</span>
+                            <div class="btn-glow"></div>
                         </a>
+                        <div class="code-rain">
+                            <span>01</span><span>10</span><span>11</span><span>00</span>
+                            <span>01</span><span>10</span><span>11</span><span>00</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Round 3: File Upload -->
             <div class="round-section" id="round3">
-                <div class="round-header">
-                    <h1 class="round-title">Round 3: Project Submission</h1>
+                <div class="round-header animated-header">
+                    <div class="header-particles"></div>
+                    <h1 class="round-title neon-text">Round 3: Project Submission</h1>
                     <p class="round-subtitle">Upload your project files</p>
                 </div>
                 <div class="round-content-center">
-                    <div class="round-card upload-card">
-                        <div class="round-card-icon">📤</div>
-                        <h2>Upload Your Project</h2>
+                    <div class="round-card mega-card upload-card upload-theme">
+                        <div class="card-border-anim"></div>
+                        <div class="card-bg-pattern"></div>
+                        <div class="round-card-icon mega-icon floating-icon">📤</div>
+                        <h2 class="gradient-shift">Upload Your Project</h2>
                         <p>Submit your project files (ZIP, PDF, or document format)</p>
-                        <div class="upload-area" id="uploadArea">
+                        <div class="upload-area cyber-upload" id="uploadArea">
                             <input type="file" id="fileInput" hidden />
-                            <div class="upload-icon">📁</div>
+                            <div class="upload-icon pulse-icon">📁</div>
                             <p class="upload-text">
                                 Drag & drop your file here or click to browse
                             </p>
                             <p class="upload-hint">Max file size: 50MB</p>
+                            <div class="upload-border-anim"></div>
                         </div>
                         <div class="uploaded-file" id="uploadedFile" style="display: none">
                             <span class="file-icon">📄</span>
                             <span class="file-name" id="fileName"></span>
                             <button class="remove-file" id="removeFile">✕</button>
                         </div>
-                        <button class="round-btn submit-upload" id="submitUpload" disabled>
-                            Submit File
+                        <button class="round-btn cyber-btn submit-upload" id="submitUpload" disabled>
+                            <span class="btn-content">Submit File</span>
+                            <div class="btn-glow"></div>
                         </button>
                     </div>
                 </div>
@@ -689,21 +763,71 @@
 
             <!-- Round 4: Scenario -->
             <div class="round-section" id="round4">
-                <div class="round-header">
-                    <h1 class="round-title">Round 4: Scenario Challenge</h1>
+                <div class="round-header animated-header">
+                    <div class="header-particles"></div>
+                    <h1 class="round-title neon-text">Round 4: Scenario Challenge</h1>
                     <p class="round-subtitle">
                         Apply your knowledge to real-world scenarios
                     </p>
                 </div>
                 <div class="round-content-center">
-                    <div class="round-card">
-                        <div class="round-card-icon">🎯</div>
-                        <h2>Coming Soon</h2>
+                    <div class="round-card mega-card scenario-theme locked-card">
+                        <div class="card-border-anim"></div>
+                        <div class="card-bg-pattern"></div>
+                        <div class="round-card-icon mega-icon floating-icon">🎯</div>
+                        <h2 class="gradient-shift">Coming Soon</h2>
                         <p>
                             The scenario-based challenge will be revealed during the event.
                             Stay tuned!
                         </p>
-                        <div class="coming-soon-badge">🔒 Locked</div>
+                        <div class="coming-soon-badge glow-badge">
+                            <span class="lock-icon">🔒</span>
+                            <span>Locked</span>
+                        </div>
+                        <div class="mystery-particles">
+                            <span>?</span><span>?</span><span>?</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboard Section -->
+            <div class="round-section" id="leaderboard">
+                <div class="round-header">
+                    <h1 class="round-title">🏆 Team Leaderboard</h1>
+                    <p class="round-subtitle">See how teams are performing in the event</p>
+                </div>
+                <div class="leaderboard-container">
+                    <div class="leaderboard-header">
+                        <div class="leaderboard-refresh">
+                            <button class="refresh-btn" id="refreshLeaderboard">
+                                🔄 Refresh
+                            </button>
+                        </div>
+                    </div>
+                    <div class="leaderboard-table">
+                        <div class="leaderboard-table-header">
+                            <div class="lb-col lb-rank">Rank</div>
+                            <div class="lb-col lb-team">Team</div>
+                            <div class="lb-col lb-members">Members</div>
+                            <div class="lb-col lb-score">Score</div>
+                        </div>
+                        <div class="leaderboard-body" id="leaderboardBody">
+                            <!-- Leaderboard rows will be populated dynamically -->
+                            <div class="leaderboard-loading" id="leaderboardLoading">
+                                <div class="loading-spinner"></div>
+                                <p>Loading leaderboard...</p>
+                            </div>
+                            <div class="leaderboard-empty" id="leaderboardEmpty" style="display: none;">
+                                <span class="empty-icon">📊</span>
+                                <p>No teams registered yet. Be the first!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="leaderboard-footer">
+                        <p class="leaderboard-note">
+                            Scores are updated after each round completion
+                        </p>
                     </div>
                 </div>
             </div>

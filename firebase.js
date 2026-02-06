@@ -231,6 +231,37 @@ async function getTeamDetails(teamId) {
     }
 }
 
+// ============================================
+// GET ALL TEAMS (for Leaderboard)
+// ============================================
+async function getAllTeams() {
+    try {
+        const teamsSnapshot = await getDocs(collection(db, "teams"));
+        const teams = [];
+
+        for (const teamDoc of teamsSnapshot.docs) {
+            const teamData = teamDoc.data();
+            teams.push({
+                id: teamDoc.id,
+                name: teamData.name,
+                code: teamData.code,
+                memberCount: teamData.members ? teamData.members.length : 0,
+                maxSize: teamData.maxSize,
+                score: teamData.score || 0,
+                createdAt: teamData.createdAt
+            });
+        }
+
+        // Sort by score (highest first)
+        teams.sort((a, b) => b.score - a.score);
+
+        return { success: true, teams };
+    } catch (error) {
+        console.error("Get all teams error:", error);
+        return { success: false, error: error.message };
+    }
+}
+
 // Export for use in main script
 export {
     auth,
@@ -242,5 +273,6 @@ export {
     getUserData,
     createTeam,
     joinTeam,
-    getTeamDetails
+    getTeamDetails,
+    getAllTeams
 };

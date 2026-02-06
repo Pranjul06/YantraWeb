@@ -87,6 +87,133 @@ resizeCanvas();
 drawNetwork();
 
 // ============================================
+// DASHBOARD CANVAS ANIMATION (Hexagonal Network)
+// ============================================
+const dashboardCanvas = document.getElementById('dashboard-canvas');
+if (dashboardCanvas) {
+    const dashCtx = dashboardCanvas.getContext('2d');
+    let dashNodes = [];
+    let mouseX = 0;
+    let mouseY = 0;
+
+    function resizeDashboardCanvas() {
+        dashboardCanvas.width = window.innerWidth;
+        dashboardCanvas.height = window.innerHeight;
+        initDashNodes();
+    }
+
+    function initDashNodes() {
+        dashNodes = [];
+        const nodeCount = Math.floor((dashboardCanvas.width * dashboardCanvas.height) / 35000);
+
+        for (let i = 0; i < nodeCount; i++) {
+            dashNodes.push({
+                x: Math.random() * dashboardCanvas.width,
+                y: Math.random() * dashboardCanvas.height,
+                vx: (Math.random() - 0.5) * 0.8,
+                vy: (Math.random() - 0.5) * 0.8,
+                radius: Math.random() * 3 + 1,
+                pulse: Math.random() * Math.PI * 2,
+                hue: Math.random() * 60 + 170 // Cyan to purple range
+            });
+        }
+    }
+
+    function drawDashNetwork() {
+        dashCtx.clearRect(0, 0, dashboardCanvas.width, dashboardCanvas.height);
+
+        // Draw connections
+        dashNodes.forEach((node, i) => {
+            dashNodes.slice(i + 1).forEach(other => {
+                const dx = other.x - node.x;
+                const dy = other.y - node.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 180) {
+                    const opacity = (1 - distance / 180) * 0.25;
+                    const gradient = dashCtx.createLinearGradient(node.x, node.y, other.x, other.y);
+                    gradient.addColorStop(0, `hsla(${node.hue}, 100%, 60%, ${opacity})`);
+                    gradient.addColorStop(1, `hsla(${other.hue}, 100%, 60%, ${opacity})`);
+
+                    dashCtx.beginPath();
+                    dashCtx.moveTo(node.x, node.y);
+                    dashCtx.lineTo(other.x, other.y);
+                    dashCtx.strokeStyle = gradient;
+                    dashCtx.lineWidth = 0.8;
+                    dashCtx.stroke();
+                }
+            });
+
+            // Mouse interaction - nodes attract to mouse
+            const distToMouse = Math.sqrt(
+                Math.pow(node.x - mouseX, 2) + Math.pow(node.y - mouseY, 2)
+            );
+            if (distToMouse < 200 && distToMouse > 0) {
+                const force = (200 - distToMouse) / 200 * 0.02;
+                node.vx += (mouseX - node.x) * force;
+                node.vy += (mouseY - node.y) * force;
+            }
+        });
+
+        // Draw and animate nodes
+        dashNodes.forEach(node => {
+            // Apply velocity
+            node.x += node.vx;
+            node.y += node.vy;
+            node.pulse += 0.03;
+
+            // Dampen velocity
+            node.vx *= 0.99;
+            node.vy *= 0.99;
+
+            // Bounce off walls
+            if (node.x < 0 || node.x > dashboardCanvas.width) node.vx *= -1;
+            if (node.y < 0 || node.y > dashboardCanvas.height) node.vy *= -1;
+
+            const pulseRadius = node.radius + Math.sin(node.pulse) * 1;
+
+            // Outer glow
+            const gradient = dashCtx.createRadialGradient(
+                node.x, node.y, 0,
+                node.x, node.y, pulseRadius * 4
+            );
+            gradient.addColorStop(0, `hsla(${node.hue}, 100%, 60%, 0.8)`);
+            gradient.addColorStop(0.5, `hsla(${node.hue}, 100%, 60%, 0.2)`);
+            gradient.addColorStop(1, 'transparent');
+
+            dashCtx.beginPath();
+            dashCtx.arc(node.x, node.y, pulseRadius * 4, 0, Math.PI * 2);
+            dashCtx.fillStyle = gradient;
+            dashCtx.fill();
+
+            // Core
+            dashCtx.beginPath();
+            dashCtx.arc(node.x, node.y, pulseRadius, 0, Math.PI * 2);
+            dashCtx.fillStyle = `hsla(${node.hue}, 100%, 70%, 1)`;
+            dashCtx.fill();
+
+            // Shift hue slowly
+            node.hue = (node.hue + 0.05) % 360;
+            if (node.hue < 170 || node.hue > 320) {
+                node.hue = 170 + Math.random() * 150;
+            }
+        });
+
+        requestAnimationFrame(drawDashNetwork);
+    }
+
+    // Track mouse position
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    window.addEventListener('resize', resizeDashboardCanvas);
+    resizeDashboardCanvas();
+    drawDashNetwork();
+}
+
+// ============================================
 // NAVIGATION - SCROLL TO SECTIONS
 // ============================================
 const navMappings = {
@@ -129,116 +256,37 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealElements.forEach(el => revealObserver.observe(el));
 
 // ============================================
-// MODAL FUNCTIONALITY
+// SIDEBAR NAVIGATION (for Dashboard rounds)
 // ============================================
-const enterEventBtn = document.getElementById('enterEventBtn');
-const registrationModal = document.getElementById('registrationModal');
-const closeModal = document.getElementById('closeModal');
-const registrationForm = document.getElementById('registrationForm');
+function initSidebarNavigation() {
+    const navItems = document.querySelectorAll('.nav-item');
+    const roundSections = document.querySelectorAll('.round-section');
 
-enterEventBtn.addEventListener('click', () => {
-    registrationModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-});
-
-closeModal.addEventListener('click', () => {
-    registrationModal.classList.remove('active');
-    document.body.style.overflow = '';
-});
-
-registrationModal.addEventListener('click', (e) => {
-    if (e.target === registrationModal) {
-        registrationModal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-});
-
-// ============================================
-// FORM SUBMISSION & DASHBOARD
-// ============================================
-const landingPage = document.getElementById('landingPage');
-const dashboard = document.getElementById('dashboard');
-const profileTeamName = document.getElementById('profileTeamName');
-const profileMemberCount = document.getElementById('profileMemberCount');
-
-registrationForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const teamName = document.getElementById('teamName').value.trim();
-    const memberCount = document.getElementById('memberCount').value;
-
-    if (!teamName || !memberCount) {
-        alert('Please fill in all fields');
-        return;
+    if (navItems.length === 0 || roundSections.length === 0) {
+        return; // Elements not ready yet
     }
 
-    // Store in localStorage
-    const teamData = {
-        name: teamName,
-        members: memberCount,
-        timestamp: new Date().toISOString()
-    };
-    localStorage.setItem('yantra_team', JSON.stringify(teamData));
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const targetRound = item.getAttribute('data-round');
 
-    // Update profile popup
-    profileTeamName.textContent = teamName;
-    profileMemberCount.textContent = `Members: ${memberCount}`;
+            // Update active nav item
+            navItems.forEach(nav => nav.classList.remove('active'));
+            item.classList.add('active');
 
-    // Hide modal and landing, show dashboard
-    registrationModal.classList.remove('active');
-    landingPage.style.display = 'none';
-    dashboard.classList.add('active');
-    document.body.style.overflow = '';
-
-    // Launch confetti
-    launchConfetti();
-});
-
-// ============================================
-// PROFILE POPUP
-// ============================================
-const profileCircle = document.getElementById('profileCircle');
-const profilePopup = document.getElementById('profilePopup');
-const closeProfile = document.getElementById('closeProfile');
-
-profileCircle.addEventListener('click', () => {
-    profilePopup.classList.toggle('active');
-});
-
-closeProfile.addEventListener('click', () => {
-    profilePopup.classList.remove('active');
-});
-
-// Close popup when clicking outside
-document.addEventListener('click', (e) => {
-    if (!profileCircle.contains(e.target) && !profilePopup.contains(e.target)) {
-        profilePopup.classList.remove('active');
-    }
-});
-
-// ============================================
-// SIDEBAR NAVIGATION
-// ============================================
-const navItems = document.querySelectorAll('.nav-item');
-const roundSections = document.querySelectorAll('.round-section');
-
-navItems.forEach(item => {
-    item.addEventListener('click', () => {
-        const targetRound = item.getAttribute('data-round');
-
-        // Update active nav item
-        navItems.forEach(nav => nav.classList.remove('active'));
-        item.classList.add('active');
-
-        // Show corresponding section
-        roundSections.forEach(section => {
-            section.classList.remove('active');
-            if (section.id === targetRound) {
-                section.classList.add('active');
-            }
+            // Show corresponding section
+            roundSections.forEach(section => {
+                section.classList.remove('active');
+                if (section.id === targetRound) {
+                    section.classList.add('active');
+                }
+            });
         });
     });
-});
+}
+
+// Initialize sidebar navigation
+initSidebarNavigation();
 
 // ============================================
 // FILE UPLOAD (Round 3)
@@ -373,13 +421,4 @@ function launchConfetti() {
     animateConfetti();
 }
 
-// ============================================
-// KEYBOARD SHORTCUTS
-// ============================================
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        registrationModal.classList.remove('active');
-        profilePopup.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-});
+// Keyboard shortcuts are handled in app.js

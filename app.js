@@ -10,7 +10,8 @@ import {
     getUserData,
     createTeam,
     joinTeam,
-    getTeamDetails
+    getTeamDetails,
+    getAllTeams
 } from './firebase.js';
 
 // ============================================
@@ -467,6 +468,76 @@ document.addEventListener('keydown', (e) => {
         profilePopup.classList.remove('active');
         document.body.style.overflow = '';
     }
+});
+
+// ============================================
+// LEADERBOARD FUNCTIONS
+// ============================================
+const leaderboardBody = document.getElementById('leaderboardBody');
+const leaderboardLoading = document.getElementById('leaderboardLoading');
+const leaderboardEmpty = document.getElementById('leaderboardEmpty');
+const refreshLeaderboardBtn = document.getElementById('refreshLeaderboard');
+
+async function loadLeaderboard() {
+    if (!leaderboardBody) return;
+
+    // Show loading
+    leaderboardLoading.style.display = 'flex';
+    leaderboardEmpty.style.display = 'none';
+
+    // Clear existing rows (keep loading and empty elements)
+    const existingRows = leaderboardBody.querySelectorAll('.leaderboard-row');
+    existingRows.forEach(row => row.remove());
+
+    const result = await getAllTeams();
+
+    leaderboardLoading.style.display = 'none';
+
+    if (result.success && result.teams.length > 0) {
+        result.teams.forEach((team, index) => {
+            const row = document.createElement('div');
+            row.className = 'leaderboard-row';
+            if (index < 3) {
+                row.classList.add(`rank-${index + 1}`);
+            }
+
+            const rankIcon = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`;
+
+            row.innerHTML = `
+                <div class="lb-col lb-rank">${rankIcon}</div>
+                <div class="lb-col lb-team">
+                    <span class="team-name">${team.name}</span>
+                </div>
+                <div class="lb-col lb-members">${team.memberCount}/${team.maxSize}</div>
+                <div class="lb-col lb-score">${team.score}</div>
+            `;
+
+            leaderboardBody.appendChild(row);
+        });
+    } else if (result.success && result.teams.length === 0) {
+        leaderboardEmpty.style.display = 'flex';
+    }
+}
+
+// Refresh leaderboard button
+if (refreshLeaderboardBtn) {
+    refreshLeaderboardBtn.addEventListener('click', () => {
+        refreshLeaderboardBtn.classList.add('spinning');
+        loadLeaderboard().then(() => {
+            setTimeout(() => {
+                refreshLeaderboardBtn.classList.remove('spinning');
+            }, 500);
+        });
+    });
+}
+
+// Load leaderboard when switching to leaderboard section
+document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+        if (item.getAttribute('data-round') === 'leaderboard') {
+            loadLeaderboard();
+        }
+    });
 });
 
 console.log('App.js loaded successfully');
