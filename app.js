@@ -560,7 +560,7 @@ function initRoundLocks() {
     onSnapshot(doc(db, "event_settings", "rounds_status"), (docSnapshot) => {
         if (docSnapshot.exists()) {
             const status = docSnapshot.data();
-            
+
             // Update the UI for each round
             updateRoundState("round1", status.round1_open);
             updateRoundState("round2", status.round2_open);
@@ -577,7 +577,7 @@ function updateRoundState(roundId, isOpen) {
     // 1. Find the sidebar button
     // Note: We search by the 'data-round' attribute you used in HTML
     const navBtn = document.querySelector(`.nav-item[data-round="${roundId}"]`);
-    
+
     // 2. Find the actual section content
     const section = document.getElementById(roundId);
 
@@ -586,18 +586,18 @@ function updateRoundState(roundId, isOpen) {
             // --- UNLOCKED STATE ---
             navBtn.classList.remove("locked");
             section.classList.remove("locked-content");
-            
+
             // Remove any "Locked" overlay if you added one
             const lockedMsg = section.querySelector('.locked-message');
-            if(lockedMsg) lockedMsg.remove();
-            
+            if (lockedMsg) lockedMsg.remove();
+
             // Show the original content (children)
             Array.from(section.children).forEach(child => child.style.display = '');
 
         } else {
             // --- LOCKED STATE ---
             navBtn.classList.add("locked");
-            
+
             // Hide section content to prevent interaction while locked
             Array.from(section.children).forEach(child => child.style.display = 'none');
 
@@ -660,5 +660,41 @@ function initNavigation() {
 // Initialize navigation first, then listen for round lock changes
 initNavigation();
 initRoundLocks();
+
+// ============================================
+// STICKY TOP BAR BEHAVIOR
+// ============================================
+const stickyTopbar = document.getElementById('stickyTopbar');
+const dashboardContent = document.querySelector('.dashboard-content');
+const stickyTeamBtn = document.getElementById('stickyTeamBtn');
+const stickyProfileCircle = document.getElementById('stickyProfileCircle');
+
+// Scroll listener for sticky top bar visibility
+if (dashboardContent && stickyTopbar) {
+    dashboardContent.addEventListener('scroll', () => {
+        if (dashboardContent.scrollTop > 100) {
+            stickyTopbar.classList.add('visible');
+        } else {
+            stickyTopbar.classList.remove('visible');
+        }
+    });
+}
+
+// Wire up sticky team button to open team details modal
+if (stickyTeamBtn) {
+    stickyTeamBtn.addEventListener('click', async () => {
+        // Trigger the same action as the main team details button
+        if (teamDetailsBtn) {
+            teamDetailsBtn.click();
+        }
+    });
+}
+
+// Wire up sticky profile button to toggle profile popup
+if (stickyProfileCircle) {
+    stickyProfileCircle.addEventListener('click', () => {
+        profilePopup.classList.toggle('active');
+    });
+}
 
 console.log('App.js loaded successfully');

@@ -4130,39 +4130,568 @@
         .locked-card:hover {
             filter: grayscale(0%);
         }
+
         /* --- Locked Round Styles --- */
-.nav-item.locked {
-    opacity: 0.5;
-    pointer-events: none; /* Prevents clicking */
-    filter: grayscale(100%);
-    position: relative;
-}
+        .nav-item.locked {
+            opacity: 0.5;
+            pointer-events: none;
+            /* Prevents clicking */
+            filter: grayscale(100%);
+            position: relative;
+        }
 
-.nav-item.locked::after {
-    content: "🔒";
-    position: absolute;
-    right: 15px;
-    font-size: 1rem;
-}
+        .nav-item.locked::after {
+            content: "🔒";
+            position: absolute;
+            right: 15px;
+            font-size: 1rem;
+        }
 
-/* Optional: Hide the section content if they somehow get there */
-.round-section.locked-content {
-    display: none !important;
-}
+        /* Optional: Hide the section content if they somehow get there */
+        .round-section.locked-content {
+            display: none !important;
+        }
 
-/* Message to show when locked */
-.locked-message {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    text-align: center;
-    color: var(--text-muted);
-}
+        /* Message to show when locked */
+        .locked-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            color: var(--text-muted);
+        }
 
-.locked-message h2 {
-    font-family: var(--font-display);
-    color: var(--accent-pink);
-    margin-bottom: 10px;
-}
+        .locked-message h2 {
+            font-family: var(--font-display);
+            color: var(--accent-pink);
+            margin-bottom: 10px;
+        }
+
+        /* =========================================
+   STICKY TOP BAR STYLES
+   ========================================= */
+        .sticky-topbar {
+            position: fixed;
+            top: 0;
+            left: 280px;
+            right: 0;
+            height: 70px;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            z-index: 180;
+            transform: translateY(-100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .sticky-topbar.visible {
+            transform: translateY(0);
+        }
+
+        .sticky-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .sticky-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+        }
+
+        .sticky-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .sticky-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .sticky-team-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(0, 245, 255, 0.1);
+            border: 1px solid var(--border-glow);
+            border-radius: 25px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sticky-team-btn:hover {
+            background: rgba(0, 245, 255, 0.2);
+            border-color: var(--accent-cyan);
+            transform: scale(1.05);
+        }
+
+        .sticky-icon {
+            font-size: 1.1rem;
+        }
+
+        .sticky-text {
+            font-weight: 500;
+        }
+
+        .sticky-profile {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 245, 255, 0.3);
+        }
+
+        .sticky-profile:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0, 245, 255, 0.5);
+        }
+
+        .sticky-profile-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Sticky Top Bar */
+        @media (max-width: 768px) {
+            .sticky-topbar {
+                left: 70px;
+                padding: 0 15px;
+                height: 60px;
+            }
+
+            .sticky-title {
+                font-size: 1.2rem;
+            }
+
+            .sticky-subtitle {
+                display: none;
+            }
+
+            .sticky-text {
+                display: none;
+            }
+
+            .sticky-team-btn {
+                padding: 10px;
+                border-radius: 50%;
+            }
+
+            .sticky-profile {
+                width: 38px;
+                height: 38px;
+            }
+        }
+
+        /* =========================================
+   WEB3 TOPICS SECTION STYLES (Introduction)
+   ========================================= */
+        .web3-topics {
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .web3-topic-section {
+            padding: 40px 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .topic-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .topic-icon {
+            font-size: 3.5rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            animation: float3D 4s ease-in-out infinite;
+        }
+
+        .topic-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 15px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .topic-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Blockchain Visual (Intro) */
+        .blockchain-visual-intro {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .chain-block-intro {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(0, 102, 255, 0.1));
+            border: 2px solid var(--accent-cyan);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            animation: float3D 3s ease-in-out infinite;
+        }
+
+        .chain-block-intro:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .chain-block-intro:nth-child(5) {
+            animation-delay: 1s;
+        }
+
+        .chain-block-intro:nth-child(7) {
+            animation-delay: 1.5s;
+        }
+
+        .chain-block-intro:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
+        }
+
+        .chain-connector-intro {
+            width: 40px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chain-connector-intro::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 100%;
+            background: white;
+            animation: tickerSlide 1s linear infinite;
+            filter: blur(2px);
+        }
+
+        /* Info Grid (Intro) */
+        .info-grid-intro {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .info-card-intro {
+            background: rgba(0, 245, 255, 0.03);
+            border: 1px solid rgba(0, 245, 255, 0.15);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.4s ease;
+        }
+
+        .info-card-intro:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 15px 30px rgba(0, 245, 255, 0.15);
+        }
+
+        .info-card-intro h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+        }
+
+        .info-card-intro p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Crypto Ticker (Intro) */
+        .crypto-ticker-intro {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .ticker-item-intro {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .ticker-item-intro:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-3px);
+        }
+
+        .ticker-item-intro .symbol {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent-cyan);
+        }
+
+        .ticker-item-intro .price {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .ticker-item-intro .change.up {
+            color: #00ff88;
+        }
+
+        .ticker-item-intro .change.down {
+            color: var(--accent-pink);
+        }
+
+        /* Crypto Grid (Intro) */
+        .crypto-grid-intro {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .crypto-card-intro {
+            background: linear-gradient(135deg, rgba(191, 0, 255, 0.05), rgba(0, 245, 255, 0.05));
+            border: 1px solid rgba(191, 0, 255, 0.15);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.4s ease;
+        }
+
+        .crypto-card-intro:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 15px 30px rgba(191, 0, 255, 0.15);
+        }
+
+        .crypto-card-intro h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--accent-purple);
+            margin-bottom: 10px;
+        }
+
+        .crypto-card-intro p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* NFT Gallery (Intro) */
+        .nft-gallery-intro {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .nft-card-intro {
+            background: linear-gradient(135deg, rgba(255, 0, 128, 0.05), rgba(191, 0, 255, 0.05));
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .nft-card-intro:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 0, 128, 0.2);
+            border-color: var(--accent-pink);
+        }
+
+        .nft-image-intro {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .nft-info-intro {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .nft-info-intro h4 {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .nft-price {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        /* DAO Visual (Intro) */
+        .dao-visual-intro {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .dao-node-intro {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0, 245, 255, 0.1);
+            border: 2px solid var(--border-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.4s ease;
+            animation: float3D 3s ease-in-out infinite;
+        }
+
+        .dao-node-intro:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .dao-node-intro:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .dao-node-intro:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+
+        .dao-node-intro:nth-child(5) {
+            animation-delay: 2s;
+        }
+
+        .dao-node-intro:nth-child(6) {
+            animation-delay: 2.5s;
+        }
+
+        .dao-node-intro.central {
+            width: 80px;
+            height: 80px;
+            font-size: 2rem;
+            background: var(--gradient-main);
+            border-color: var(--accent-cyan);
+        }
+
+        .dao-node-intro:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 25px rgba(0, 245, 255, 0.4);
+        }
+
+        /* DAO Features (Intro) */
+        .dao-features-intro {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .dao-feature-intro {
+            background: rgba(0, 102, 255, 0.05);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .dao-feature-intro:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 15px 30px rgba(0, 102, 255, 0.15);
+        }
+
+        .dao-feature-intro h4 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+        }
+
+        .dao-feature-intro p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive Web3 Topics */
+        @media (max-width: 768px) {
+            .web3-topics {
+                gap: 50px;
+            }
+
+            .topic-icon {
+                font-size: 2.5rem;
+            }
+
+            .chain-block-intro {
+                width: 70px;
+                height: 70px;
+            }
+
+            .chain-connector-intro {
+                width: 25px;
+            }
+
+            .dao-node-intro {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .dao-node-intro.central {
+                width: 65px;
+                height: 65px;
+                font-size: 1.5rem;
+            }
+        }
