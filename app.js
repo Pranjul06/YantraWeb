@@ -662,39 +662,22 @@ initNavigation();
 initRoundLocks();
 
 // ============================================
-// STICKY TOP BAR BEHAVIOR
+// HAMBURGER MENU FUNCTIONALITY
 // ============================================
-const stickyTopbar = document.getElementById('stickyTopbar');
+const hamburgerMenu = document.getElementById('hamburgerMenu');
+const sidebar = document.getElementById('sidebar');
 const dashboardContent = document.querySelector('.dashboard-content');
-const stickyTeamBtn = document.getElementById('stickyTeamBtn');
-const stickyProfileCircle = document.getElementById('stickyProfileCircle');
 
-// Scroll listener for sticky top bar visibility
-if (dashboardContent && stickyTopbar) {
-    dashboardContent.addEventListener('scroll', () => {
-        if (dashboardContent.scrollTop > 100) {
-            stickyTopbar.classList.add('visible');
-        } else {
-            stickyTopbar.classList.remove('visible');
+// Toggle sidebar visibility on hamburger menu click
+if (hamburgerMenu && sidebar) {
+    hamburgerMenu.addEventListener('click', () => {
+        hamburgerMenu.classList.toggle('active');
+        sidebar.classList.toggle('collapsed');
+        if (dashboardContent) {
+            dashboardContent.classList.toggle('expanded');
         }
-    });
-}
-
-// Wire up sticky team button to open team details modal
-if (stickyTeamBtn) {
-    stickyTeamBtn.addEventListener('click', async () => {
-        // Trigger the same action as the main team details button
-        if (teamDetailsBtn) {
-            teamDetailsBtn.click();
-        }
-    });
-}
-
-// Wire up sticky profile button to toggle profile popup
-if (stickyProfileCircle) {
-    stickyProfileCircle.addEventListener('click', () => {
-        profilePopup.classList.toggle('active');
     });
 }
 
 console.log('App.js loaded successfully');
+
