@@ -13,6 +13,8 @@ import {
     getTeamDetails,
     getAllTeams
 } from './firebase.js';
+import { getFirestore, collection, query, orderBy, getDocs, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+import { db } from "./firebase.js"; // Assuming you export 'db' from firebase.js
 
 // ============================================
 // GLOBAL STATE
@@ -20,6 +22,14 @@ import {
 let currentUser = null;
 let currentUserData = null;
 let currentTeamData = null;
+
+// Expose to window for cross-module access
+window.currentTeamData = null;
+window.setCurrentTeamData = (data) => {
+    currentTeamData = data;
+    window.currentTeamData = data;
+};
+window.getCurrentTeamData = () => currentTeamData;
 
 // ============================================
 // DOM ELEMENTS
@@ -88,14 +98,14 @@ onAuthStateChanged(auth, async (user) => {
             if (currentUserData.teamId) {
                 const teamResult = await getTeamDetails(currentUserData.teamId);
                 if (teamResult.success) {
-                    currentTeamData = teamResult.data;
+                    window.setCurrentTeamData(teamResult.data);
                 }
             }
         }
     } else {
         currentUser = null;
         currentUserData = null;
-        currentTeamData = null;
+        window.setCurrentTeamData(null);
     }
 });
 
@@ -197,7 +207,7 @@ loginFormElement.addEventListener('submit', async (e) => {
                 // User already has a team, go to dashboard
                 const teamResult = await getTeamDetails(currentUserData.teamId);
                 if (teamResult.success) {
-                    currentTeamData = teamResult.data;
+                    window.setCurrentTeamData(teamResult.data);
                 }
                 showDashboard();
             } else {
@@ -265,7 +275,7 @@ createTeamFormElement.addEventListener('submit', async (e) => {
         // Update current team data
         const teamResult = await getTeamDetails(result.teamId);
         if (teamResult.success) {
-            currentTeamData = teamResult.data;
+            window.setCurrentTeamData(teamResult.data);
         }
     } else {
         createTeamError.textContent = result.error;
@@ -288,7 +298,7 @@ joinTeamFormElement.addEventListener('submit', async (e) => {
         // Update current team data
         const teamResult = await getTeamDetails(result.teamId);
         if (teamResult.success) {
-            currentTeamData = teamResult.data;
+            window.setCurrentTeamData(teamResult.data);
         }
 
         teamModal.classList.remove('active');
@@ -379,7 +389,7 @@ logoutBtn.addEventListener('click', async () => {
     if (result.success) {
         currentUser = null;
         currentUserData = null;
-        currentTeamData = null;
+        window.setCurrentTeamData(null);
 
         dashboard.classList.remove('active');
         landingPage.style.display = 'block';
@@ -539,5 +549,116 @@ document.querySelectorAll('.nav-item').forEach(item => {
         }
     });
 });
+
+// ============================================
+// ROUND LOCKS - LISTEN FOR FIRESTORE CHANGES
+// ============================================
+function initRoundLocks() {
+    const db = getFirestore(); // Ensure db is initialized
+
+    // Listen to the 'rounds_status' document in real-time
+    onSnapshot(doc(db, "event_settings", "rounds_status"), (docSnapshot) => {
+        if (docSnapshot.exists()) {
+            const status = docSnapshot.data();
+            
+            // Update the UI for each round
+            updateRoundState("round1", status.round1_open);
+            updateRoundState("round2", status.round2_open);
+            updateRoundState("round3", status.round3_open);
+            updateRoundState("round4", status.round4_open);
+        } else {
+            console.log("No round settings found! Creating defaults...");
+        }
+    });
+}
+
+// Helper function to lock/unlock specific rounds
+function updateRoundState(roundId, isOpen) {
+    // 1. Find the sidebar button
+    // Note: We search by the 'data-round' attribute you used in HTML
+    const navBtn = document.querySelector(`.nav-item[data-round="${roundId}"]`);
+    
+    // 2. Find the actual section content
+    const section = document.getElementById(roundId);
+
+    if (navBtn && section) {
+        if (isOpen) {
+            // --- UNLOCKED STATE ---
+            navBtn.classList.remove("locked");
+            section.classList.remove("locked-content");
+            
+            // Remove any "Locked" overlay if you added one
+            const lockedMsg = section.querySelector('.locked-message');
+            if(lockedMsg) lockedMsg.remove();
+            
+            // Show the original content (children)
+            Array.from(section.children).forEach(child => child.style.display = '');
+
+        } else {
+            // --- LOCKED STATE ---
+            navBtn.classList.add("locked");
+            
+            // Hide section content to prevent interaction while locked
+            Array.from(section.children).forEach(child => child.style.display = 'none');
+
+            // If the user is currently looking at this locked section, switch them to Intro
+            if (section.classList.contains("active")) {
+                const introBtn = document.querySelector('.nav-item[data-round="intro"]');
+                if (introBtn) introBtn.click();
+            }
+        }
+    }
+}
+
+// Initialize navigation behaviour for sidebar buttons
+function initNavigation() {
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('.round-section');
+
+    navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            // Respect locked state
+            if (item.classList.contains('locked')) {
+                // Optional: brief visual feedback for locked sections
+                item.classList.add('shake');
+                setTimeout(() => item.classList.remove('shake'), 300);
+                return;
+            }
+
+            const target = item.getAttribute('data-round');
+            if (!target) return;
+
+            // Remove active on all nav items
+            navItems.forEach(n => n.classList.remove('active'));
+            item.classList.add('active');
+
+            // Hide all sections
+            sections.forEach(sec => {
+                sec.classList.remove('active');
+                sec.style.display = 'none';
+            });
+
+            // Show target section
+            const section = document.getElementById(target);
+            if (section) {
+                section.classList.add('active');
+                section.style.display = '';
+            }
+
+            // Special handling: if leaderboard clicked, trigger load
+            if (target === 'leaderboard') {
+                if (typeof loadLeaderboard === 'function') loadLeaderboard();
+            }
+        });
+    });
+
+    // Ensure an initial section is visible: prefer an item already marked `.active`, otherwise default to intro
+    const initial = document.querySelector('.nav-item.active') || document.querySelector('.nav-item[data-round="intro"]');
+    if (initial) initial.click();
+}
+
+// Initialize navigation first, then listen for round lock changes
+initNavigation();
+initRoundLocks();
 
 console.log('App.js loaded successfully');

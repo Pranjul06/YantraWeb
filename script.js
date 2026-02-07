@@ -1,6 +1,9 @@
 // ============================================
 // BLOCKCHAIN NETWORK ANIMATION (Canvas)
 // ============================================
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-storage.js";
+import { updateDoc, doc } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+import { auth, storage, db } from "./firebase.js"; // Import auth, storage, and db
 const canvas = document.getElementById('blockchain-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -297,6 +300,7 @@ const uploadedFile = document.getElementById('uploadedFile');
 const fileNameDisplay = document.getElementById('fileName');
 const removeFile = document.getElementById('removeFile');
 const submitUpload = document.getElementById('submitUpload');
+const submitUploadBtn = document.getElementById('submitUpload');
 
 let selectedFile = null;
 
@@ -350,15 +354,60 @@ removeFile.addEventListener('click', () => {
     submitUpload.disabled = true;
 });
 
-submitUpload.addEventListener('click', () => {
-    if (selectedFile) {
-        alert(`File "${selectedFile.name}" submitted successfully!`);
-        // Reset upload
-        selectedFile = null;
-        fileInput.value = '';
-        uploadArea.style.display = 'block';
-        uploadedFile.style.display = 'none';
-        submitUpload.disabled = true;
+submitUpload.addEventListener('click', async () => {
+    // 1. Check if user is logged in
+    const user = auth.currentUser;
+    if (!user) return alert("You must be logged in!");
+
+    // 2. Check if user is in a Team
+    // (currentTeamData is the global variable we set in app.js)
+    const currentTeamData = window.currentTeamData;
+    if (!currentTeamData || !currentTeamData.name) {
+        return alert("You must create or join a team before uploading!");
+    }
+
+    // 3. Get the file
+    const file = fileInput.files[0];
+    if (!file) return alert("No file selected!");
+
+    const submitBtn = document.getElementById('submitUpload');
+    submitBtn.textContent = "Uploading...";
+    submitBtn.disabled = true;
+
+    try {
+        // 4. Create a Clean Team Name for the Folder
+        // (Removes spaces to avoid URL issues. e.g. "Team Alpha" -> "TeamAlpha")
+        const safeTeamName = currentTeamData.name.replace(/\s+/g, '');
+        
+        // Path: submissions / TeamName / FileName
+        // Example: submissions / Avengers / Project.pdf
+        const storageRef = ref(storage, `submissions/${safeTeamName}/${file.name}`);
+
+        // 5. Upload
+        const snapshot = await uploadBytes(storageRef, file);
+        const downloadURL = await getDownloadURL(snapshot.ref);
+
+        // 6. Save URL to the TEAM Document (Not User Document)
+        // We use currentTeamData.name (which is the Team Name or ID)
+        await updateDoc(doc(db, "teams", currentTeamData.name), {
+            projectSubmission: downloadURL,
+            submissionTime: new Date().toISOString(),
+            // Optional: Mark round as complete
+            round3_completed: true 
+        });
+
+        alert(`Success! File uploaded for Team: ${currentTeamData.name}`);
+
+        // Reset UI
+        document.getElementById('uploadedFile').style.display = 'none';
+        document.getElementById('uploadArea').style.display = 'block';
+
+    } catch (error) {
+        console.error("Upload failed", error);
+        alert("Upload failed: " + error.message);
+    } finally {
+        submitBtn.textContent = "Submit File";
+        submitBtn.disabled = false;
     }
 });
 

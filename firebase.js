@@ -22,6 +22,7 @@ import {
     where,
     arrayUnion
 } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-storage.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyD6tZbIeD7PIWcYgsW7BUPH9VEfUUo5CqQ",
@@ -37,6 +38,8 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
+
 
 console.log("Firebase initialized successfully");
 
@@ -117,39 +120,49 @@ async function getUserData(uid) {
 // ============================================
 // TEAM FUNCTIONS
 // ============================================
-async function createTeam(teamName, maxSize, creatorUid) {
+export async function createTeam(teamName, teamSize, userId) {
     try {
-        // Generate unique code
-        let code = generateTeamCode();
+        // 1. Sanitize the name to ensure it's a valid ID
+        // (Removes spaces at ends. WARNING: Don't use '/' in team names)
+        const teamId = teamName.trim();
 
-        // Check if code already exists
-        const q = query(collection(db, "teams"), where("code", "==", code));
-        const snapshot = await getDocs(q);
-        while (snapshot.size > 0) {
-            code = generateTeamCode();
+        // 2. Check if this team name is already taken!
+        const teamRef = doc(db, "teams", teamId);
+        const teamSnap = await getDoc(teamRef);
+
+        if (teamSnap.exists()) {
+            return { success: false, error: "Team name already taken! Please choose another." };
         }
 
-        const teamId = code; // Use code as team ID for simplicity
+        // 3. Generate a 6-digit Code
+        const teamCode = Math.random().toString(36).substring(2, 8).toUpperCase();
 
-        // Create team document
-        await setDoc(doc(db, "teams", teamId), {
+        // 4. Create the Team Document (Using Name as ID)
+        await setDoc(teamRef, {
             name: teamName,
-            code: code,
-            maxSize: parseInt(maxSize),
-            createdBy: creatorUid,
-            members: [creatorUid],
+            leader: userId,
+            members: [userId], // Leader is the first member
+            maxSize: parseInt(teamSize),
+            memberCount: 1,
+            code: teamCode,
+            score: 0, // <--- This ensures the score field exists for the leaderboard!
+            projectSubmission: null,
+            round1_score: 0,
+            round2_score: 0,
             createdAt: new Date().toISOString()
         });
 
-        // Update user's teamId
-        await updateDoc(doc(db, "users", creatorUid), {
-            teamId: teamId
+        // 5. Update the User to link them to this team
+        const userRef = doc(db, "users", userId);
+        await updateDoc(userRef, {
+            teamId: teamId, // Now storing the Team Name as the ID
+            isLeader: true
         });
 
-        console.log("Team created:", teamId);
-        return { success: true, teamId, code };
+        return { success: true, teamId: teamId, code: teamCode };
+
     } catch (error) {
-        console.error("Create team error:", error);
+        console.error("Error creating team:", error);
         return { success: false, error: error.message };
     }
 }
@@ -262,16 +275,17 @@ async function getAllTeams() {
     }
 }
 
+
 // Export for use in main script
 export {
     auth,
     db,
+    storage,
     onAuthStateChanged,
     registerUser,
     loginUser,
     logoutUser,
     getUserData,
-    createTeam,
     joinTeam,
     getTeamDetails,
     getAllTeams

@@ -4130,3 +4130,39 @@
         .locked-card:hover {
             filter: grayscale(0%);
         }
+        /* --- Locked Round Styles --- */
+.nav-item.locked {
+    opacity: 0.5;
+    pointer-events: none; /* Prevents clicking */
+    filter: grayscale(100%);
+    position: relative;
+}
+
+.nav-item.locked::after {
+    content: "🔒";
+    position: absolute;
+    right: 15px;
+    font-size: 1rem;
+}
+
+/* Optional: Hide the section content if they somehow get there */
+.round-section.locked-content {
+    display: none !important;
+}
+
+/* Message to show when locked */
+.locked-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.locked-message h2 {
+    font-family: var(--font-display);
+    color: var(--accent-pink);
+    margin-bottom: 10px;
+}

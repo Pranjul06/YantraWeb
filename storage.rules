@@ -1,10 +1,14 @@
 rules_version = '2';
-
-// Craft rules based on data in your Firestore database
-// allow write: if firestore.get(
-//    /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
 service firebase.storage {
   match /b/{bucket}/o {
+    
+    // Allow any logged-in user to upload to the submissions folder
+    // (We rely on the app logic to put it in the right team folder)
+    match /submissions/{allPaths=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Default block for everything else
     match /{allPaths=**} {
       allow read, write: if false;
     }
