@@ -108,6 +108,190 @@
             }
         }
 
+        /* Float3D Animation for Web3 Elements */
+        @keyframes float3D {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-10px) rotate(2deg);
+            }
+
+            75% {
+                transform: translateY(5px) rotate(-2deg);
+            }
+        }
+
+        /* Block Pulse Animation */
+        @keyframes blockPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+                transform: scale(1);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(0, 245, 255, 0.6);
+                transform: scale(1.03);
+            }
+        }
+
+        /* Data Flow Animation */
+        @keyframes dataFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 200% 50%;
+            }
+        }
+
+        /* Glow Pulse Animation */
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.4));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 25px rgba(0, 245, 255, 0.8));
+            }
+        }
+
+        /* Floating Particle Animation */
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.3;
+            }
+
+            90% {
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Chain Flow Animation */
+        @keyframes chainFlow {
+            0% {
+                left: -20px;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Pulse Glow Animation */
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+
+        /* Text Glow Animation */
+        @keyframes textGlow {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.4));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 20px rgba(0, 245, 255, 0.8));
+            }
+        }
+
+        /* Gradient Shift Animation */
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        /* Energy Flow Animation */
+        @keyframes energyFlow {
+            0% {
+                opacity: 0.3;
+                transform: scaleX(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+
+            100% {
+                opacity: 0.3;
+                transform: scaleX(0.5);
+            }
+        }
+
+        /* Border Glow Animation */
+        @keyframes borderGlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 300% 50%;
+            }
+        }
+
+        /* Pulse Icon Animation */
+        @keyframes pulseIcon {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 50px rgba(0, 245, 255, 0.5);
+            }
+        }
+
+        /* Shimmer Animation */
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                opacity: 0.7;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
         /* Grid Overlay */
         .grid-overlay {
             position: fixed;
@@ -4226,6 +4410,50 @@
 
         .hamburger-menu.active .hamburger-line:nth-child(3) {
             transform: rotate(-45deg) translate(4px, -4px);
+        }
+
+        /* Fixed Hamburger (visible when sidebar collapsed) */
+        .hamburger-menu-fixed {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 200;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.15), rgba(191, 0, 255, 0.15));
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 12px;
+            cursor: pointer;
+            display: none;
+            /* Hidden by default */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 245, 255, 0.3);
+        }
+
+        .hamburger-menu-fixed:hover {
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.25), rgba(191, 0, 255, 0.25));
+            border-color: var(--accent-cyan);
+            transform: scale(1.05);
+            box-shadow: 0 6px 30px rgba(0, 245, 255, 0.5);
+        }
+
+        .hamburger-menu-fixed .hamburger-line {
+            width: 22px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-pink));
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Show fixed hamburger when sidebar is collapsed */
+        .sidebar.collapsed~.hamburger-menu-fixed,
+        .dashboard:has(.sidebar.collapsed) .hamburger-menu-fixed {
+            display: flex;
         }
 
         /* =========================================

@@ -100,22 +100,45 @@ onAuthStateChanged(auth, async (user) => {
                 if (teamResult.success) {
                     window.setCurrentTeamData(teamResult.data);
                 }
+                // User is logged in and has team - show dashboard
+                showDashboard();
+            } else {
+                // User logged in but no team - show team modal
+                showDashboard();
+                teamModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
         }
     } else {
         currentUser = null;
         currentUserData = null;
         window.setCurrentTeamData(null);
+        // User is not logged in - show landing page
+        showLandingPage();
     }
 });
+
+// Helper function to show dashboard
+function showDashboard() {
+    if (landingPage) landingPage.style.display = 'none';
+    if (dashboard) dashboard.style.display = 'flex';
+}
+
+// Helper function to show landing page
+function showLandingPage() {
+    if (landingPage) landingPage.style.display = 'flex';
+    if (dashboard) dashboard.style.display = 'none';
+}
 
 // ============================================
 // ENTER EVENT BUTTON
 // ============================================
-enterEventBtn.addEventListener('click', () => {
-    authModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-});
+if (enterEventBtn) {
+    enterEventBtn.addEventListener('click', () => {
+        authModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
 
 // ============================================
 // AUTH MODAL - CLOSE
@@ -317,15 +340,6 @@ continueToEvent.addEventListener('click', () => {
     showDashboard();
     launchConfetti();
 });
-
-// ============================================
-// SHOW DASHBOARD
-// ============================================
-function showDashboard() {
-    landingPage.style.display = 'none';
-    dashboard.classList.add('active');
-    document.body.style.overflow = '';
-}
 
 // ============================================
 // TEAM DETAILS BUTTON
@@ -665,18 +679,28 @@ initRoundLocks();
 // HAMBURGER MENU FUNCTIONALITY
 // ============================================
 const hamburgerMenu = document.getElementById('hamburgerMenu');
+const hamburgerMenuFixed = document.getElementById('hamburgerMenuFixed');
 const sidebar = document.getElementById('sidebar');
 const dashboardContent = document.querySelector('.dashboard-content');
 
-// Toggle sidebar visibility on hamburger menu click
-if (hamburgerMenu && sidebar) {
-    hamburgerMenu.addEventListener('click', () => {
-        hamburgerMenu.classList.toggle('active');
+// Function to toggle sidebar
+function toggleSidebar() {
+    if (sidebar) {
         sidebar.classList.toggle('collapsed');
-        if (dashboardContent) {
-            dashboardContent.classList.toggle('expanded');
-        }
-    });
+        if (hamburgerMenu) hamburgerMenu.classList.toggle('active');
+        if (hamburgerMenuFixed) hamburgerMenuFixed.classList.toggle('active');
+        if (dashboardContent) dashboardContent.classList.toggle('expanded');
+    }
+}
+
+// Sidebar hamburger (inside sidebar header)
+if (hamburgerMenu && sidebar) {
+    hamburgerMenu.addEventListener('click', toggleSidebar);
+}
+
+// Fixed hamburger (visible when sidebar is collapsed)
+if (hamburgerMenuFixed && sidebar) {
+    hamburgerMenuFixed.addEventListener('click', toggleSidebar);
 }
 
 console.log('App.js loaded successfully');
