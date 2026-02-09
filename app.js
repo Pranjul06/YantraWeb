@@ -82,6 +82,13 @@ const profileUsername = document.getElementById('profileUsername');
 const profileEmail = document.getElementById('profileEmail');
 const logoutBtn = document.getElementById('logoutBtn');
 
+//Hackerrank Contest Links (Replace with actual links)
+const contestLinks = [
+    "https://www.hackerrank.com/web3verse", // Link A
+    "https://www.hackerrank.com/web3verse-b", // Link B
+    "https://www.hackerrank.com/web3verse-c"  // Link C
+];
+
 // ============================================
 // AUTH STATE LISTENER
 // ============================================
@@ -122,6 +129,7 @@ onAuthStateChanged(auth, async (user) => {
 function showDashboard() {
     if (landingPage) landingPage.style.display = 'none';
     if (dashboard) dashboard.style.display = 'flex';
+    updateHackerRankLink()
 }
 
 // Helper function to show landing page
@@ -479,6 +487,34 @@ function launchConfetti() {
     }
 
     animateConfetti();
+}
+function updateHackerRankLink() {
+    const btn = document.getElementById('hackerRankLink');
+    if (!btn) return;
+
+    // 1. Check if user has a team
+    if (!currentTeamData || !currentTeamData.code) {
+        // Fallback: Give them the first link or a generic one
+        btn.href = contestLinks[0];
+        return;
+    }
+
+    // 2. Generate a Hash from the Team Code
+    // We sum up the ASCII values of the characters (e.g., "ABC" -> 65+66+67 = 198)
+    let hash = 0;
+    const code = currentTeamData.code;
+    for (let i = 0; i < code.length; i++) {
+        hash += code.charCodeAt(i);
+    }
+
+    // 3. Select Link using Modulo
+    // 198 % 3 = 0 (Index 0)
+    const index = hash % contestLinks.length;
+    
+    // 4. Update the Button
+    btn.href = contestLinks[index];
+    
+    console.log(`Team Code: ${code} | Hash: ${hash} | Assigned Link: ${index + 1}`);
 }
 
 // ============================================
