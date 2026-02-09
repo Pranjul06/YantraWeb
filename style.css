@@ -23,6 +23,7 @@
 
         html {
             scroll-behavior: smooth;
+            scrollbar-gutter: stable;
         }
 
         body {
@@ -975,10 +976,15 @@
         /* Blockchain Blocks Animation */
         .blockchain-demo {
             display: flex;
-            gap: 20px;
-            margin: 40px 0;
+            gap: 15px;
+            margin: 40px auto;
+            padding: 0 20px;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 1.3s;
         }
@@ -1065,6 +1071,7 @@
 
             .blockchain-demo {
                 gap: 10px;
+                padding: 0 10px;
             }
 
             .block {
@@ -1076,7 +1083,25 @@
             .block-connector {
                 width: 15px;
             }
+        }
 
+        @media (max-width: 480px) {
+            .blockchain-demo {
+                gap: 8px;
+            }
+
+            .block {
+                width: 55px;
+                height: 55px;
+                font-size: 0.6rem;
+            }
+
+            .block-connector {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
             .registration-modal {
                 padding: 30px;
             }
