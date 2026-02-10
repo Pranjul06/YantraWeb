@@ -801,6 +801,12 @@
             outline: none;
         }
 
+        .form-input option {
+            background: #1a1a2e;
+            color: #ffffff;
+            padding: 10px;
+        }
+
         .form-input:focus {
             border-color: var(--accent-cyan);
             box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
@@ -3236,16 +3242,24 @@
         }
 
         .refresh-btn.spinning {
-            animation: spin 0.5s linear;
+            animation: refreshPulse 0.6s ease-in-out;
+            pointer-events: none;
         }
 
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
+        @keyframes refreshPulse {
+            0% {
+                opacity: 1;
+                box-shadow: 0 0 0 rgba(0, 245, 255, 0);
             }
 
-            to {
-                transform: rotate(360deg);
+            50% {
+                opacity: 0.6;
+                box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+            }
+
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 0 rgba(0, 245, 255, 0);
             }
         }
 
