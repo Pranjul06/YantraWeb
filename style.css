@@ -23,7 +23,6 @@
 
         html {
             scroll-behavior: smooth;
-            scrollbar-gutter: stable;
         }
 
         body {
@@ -313,6 +312,9 @@
             position: relative;
             z-index: 10;
             min-height: 100vh;
+            width: 100%;
+            max-width: 100vw;
+            overflow: hidden;
         }
 
         /* Hero Section */
@@ -325,6 +327,9 @@
             text-align: center;
             padding: 40px 20px;
             position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 100vw;
         }
 
         /* Floating Crypto Icons */
@@ -395,6 +400,8 @@
         .glitch-container {
             position: relative;
             margin-bottom: 20px;
+            width: 100%;
+            overflow: hidden;
         }
 
         .glitch {
@@ -404,6 +411,8 @@
             letter-spacing: 0.1em;
             text-transform: uppercase;
             position: relative;
+            line-height: 1.2;
+            padding: 0.1em;
             text-shadow:
                 0 0 10px var(--accent-cyan),
                 0 0 20px var(--accent-cyan),
